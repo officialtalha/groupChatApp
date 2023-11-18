@@ -15,7 +15,9 @@ const loginRoutes = require('./routes/loginRoute');
 
 //middleware use by the app
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 //server listing 
