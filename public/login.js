@@ -12,6 +12,11 @@ loginForm.addEventListener('submit', async (e) => {
         }
         const result = await axios.post(`http://localhost:3000/login`, obj);
         console.log(result);
+        const info = {
+            token: result.data.token,
+            name: result.data.name
+        };
+        localStorage.setItem('info', JSON.stringify(info));
         messageHeading.innerText = '';
         messageHeading.appendChild(document.createTextNode(result.data.message));
         if (result.data.success == true) {
