@@ -1,5 +1,6 @@
 const signUpForm = document.getElementById('sighnup-form');
 const messageHeading = document.getElementById('messageHeading');
+const loginBtn = document.getElementById('loginBtn');
 
 signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -43,4 +44,9 @@ signUpForm.addEventListener('reset', async (e) => {
     } catch (err) {
         console.log(err);
     }
+});
+
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = './login.html'
 });

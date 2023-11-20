@@ -4,33 +4,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T-Chat</title>
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@300&display=swap" rel="stylesheet">
     <style>
-        .chat-box {
-            width: 20%;
-            height: 20%;
-            text-align: center;
-            background-color: black;
-            border-width: 10px;
+        .chatBody {
+            width: 50%;
+            height: 510px;
+            margin: auto;
+            margin-top: -31px;
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            padding: 30px;
+            background-color: white;
         }
 
-        /* .bottom-container {
+        #brandingImg {
+            /* border: 2px solid black; */
+            width: 10%;
+            margin-left: 33%;
+            margin-top: -23px;
+        }
+
+        #brandingText {
+            font-family: 'Marhey', sans-serif;
+            margin: auto;
             text-align: center;
-            padding: 20px;
-        } */
+            color: rgba(143, 139, 232, 255);
+            width: 13%;
+            /* border: 2px solid brown; */
+            margin-top: -46px;
+        }
+
+        .txtMsg {
+            /* border: 2px solid green; */
+            padding: 5px;
+            /* background-color: rgb(193, 248, 193); */
+            margin-top: 7px;
+        }
+
+        .txtMsg input {
+            width: 87%;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: rgb(222, 208, 247);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 11px;
+        }
+
+        .button {
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+            width: 56px;
+        }
+
+        .chat-msg {
+            color: rgba(143, 139, 232, 255);
+            margin-top: 7px;
+            padding: 5px;
+            /* border: 2px solid rgb(140, 140, 21); */
+            /* background-color: rgb(232, 225, 245); */
+            height: 408px;
+            border-radius: 8px;
+        }
+
+        .chat-msg p {
+            font-weight: bold;
+            padding-left: 25px;
+            color: white;
+
+        }
+
+        .incomingMsg {
+            border-radius: 9px;
+            width: 25%;
+            background-color: rgba(143, 139, 232, 255);
+        }
+
+        hr {
+            border-color: rgba(143, 139, 232, 255);
+        }
+
+        #logoutBtn {
+            margin-left: 92%;
+        }
     </style>
 </head>
 
 <body>
-    <div class="chat-box">
-
+    <button type="button" class="button" id="logoutBtn">Logout</button>
+    <div class="chatBody">
+        <img src="wassup.png" alt="logo" id="brandingImg">
+        <h2 id="brandingText">T-chat</h2>
+        <hr>
+        <div class="chat-msg">
+            <div class="incomingMsg">
+                <p>msg will shoing here..</p>
+            </div>
+        </div>
+        <hr>
+        <div class="txtMsg">
+            <form id="chat-form">
+                <input type="text" name="msg" id="msg" placeholder="Type here..." required>
+                <button type="submit" class="button">send</button>
+            </form>
+        </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="chatting.js"></script>
 </body>
 
 </html>
-
-<!-- <h1>Chat App</h1>
-        <div class="bottom-container">
-            <input type="text" id="msg" name="msg">
-            <button>send</button>
-        </div> -->

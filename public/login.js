@@ -1,6 +1,6 @@
 const loginForm = document.getElementById('login-form');
 const messageHeading = document.getElementById('messageHeading');
-
+const signupBtn = document.getElementById('signupBtn');
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     try {
@@ -21,6 +21,9 @@ loginForm.addEventListener('submit', async (e) => {
         messageHeading.appendChild(document.createTextNode(result.data.message));
         if (result.data.success == true) {
             messageHeading.style.color = 'green';
+            setTimeout(() => {
+                window.location.href = './chatting.html';
+            }, 1000);
         }
         if (result.data.success == false) {
             messageHeading.style.color = 'red';
@@ -28,4 +31,8 @@ loginForm.addEventListener('submit', async (e) => {
     } catch (err) {
         console.log(err);
     }
+});
+signupBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = './signup.html'
 });

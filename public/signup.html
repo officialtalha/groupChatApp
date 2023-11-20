@@ -4,6 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .mainContainer {
+            width: 548px;
+            height: 214px;
+            margin: auto;
+            margin-top: 75px;
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            padding: 30px;
+            background-color: white;
+        }
+
+        #loginTxt {
+            /* border: 2px solid black; */
+            font-family: 'Marhey', sans-serif;
+            width: 16%;
+            margin: auto;
+            color: rgba(143, 139, 232, 255);
+        }
+
+        #brandingImg {
+            /* border: 2px solid black; */
+            width: 10%;
+            margin-left: 33%;
+            margin-top: -23px;
+        }
+
+        #brandingText {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 238px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 90px;
+            /* border: 2px solid brown; */
+            margin-top: -42px;
+        }
+
+        hr {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-color: rgba(143, 139, 232, 255);
+        }
+
+        label {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            font-size: large;
+        }
+
+        .textBoxContainer {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            border-radius: 5px;
+            padding: 20px;
+            width: 508px;
+            margin-top: -29px;
+        }
+
+        .textBoxContainer input {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            width: 220px;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: rgb(222, 208, 247);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 11px;
+        }
+
+        .button {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+            width: 56px;
+        }
+
+        .buttonsContainer {
+            /* border: 2px solid black; */
+            width: 300px;
+            padding-left: 156px;
+        }
+
+        #labelEmail {
+            margin-left: 207px;
+        }
+
+        #email {
+            margin-left: 27px;
+        }
+
+        #labelPass {
+            margin-left: 207px;
+        }
+
+        #pass {
+            margin-left: 27px;
+        }
+
+        #signup {
+            padding: 1px;
+        }
+
+        #clear {
+            margin-left: 8px;
+        }
+
+        #loginBtn {
+            margin-left: 8px;
+        }
+
+        .warningTxt {
+            /* border: 2px solid black; */
+            margin-left: 345px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainContainer">
+        <img src="wassup.png" alt="logo" id="brandingImg">
+        <h2 id="brandingText">Sign Up</h2>
+        <form id="sighnup-form" method="post">
+            <div class="textBoxContainer">
+                <label for="name">Name: </label>
+                <label for="email" id="labelEmail">Email: </label>
+                </br>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                </br>
+
+                <label for="mobile" id="labelMobile">Mobile: </label>
+                <label for="pass" id="labelPass">Password: </label>
+                </br>
+                <input type="text" id="mobile" name="mobile" placeholder="Mobile" required>
+                <input type="password" id="pass" name="password" placeholder="Password" required>
+            </div>
+            <div class="buttonsContainer">
+                <button type="submit" class="button" id="signup">SignUp</button>
+                <button type="reset" class="button" id="clear">clear</button>
+                <button type="button" class="button" id="loginBtn">log in</button>
+            </div>
+        </form>
+    </div>
+    <div class="warningTxt">
+        <h3 id="messageHeading"></h3>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="signup.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
 </head>
 
@@ -23,11 +213,11 @@
         </br>
         <button type="submit">SignUp</button>
         <button type="reset">clear</button>
-        <a href="./login.html">Already have an account. log In here.</a>
+        <button type="button" id="signupBtn">log in</button>
         <h3 id="messageHeading"></h3>
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
     <script src="signup.js"></script>
 </body>
 
-</html>
+</html> -->
