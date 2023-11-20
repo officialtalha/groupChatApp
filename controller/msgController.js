@@ -8,7 +8,8 @@ exports.msgControllerPost = async (req, res) => {
         console.log(decoded.id, message);
         const userId = decoded.id;
         const result = await Msg.create({
-            message: message
+            message: message,
+            userId: userId
         });
         res.status(200).json({ message: result, success: true });
     } catch (err) {
