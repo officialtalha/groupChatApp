@@ -19,6 +19,7 @@ const signUpRoutes = require('./routes/signUpRoutes');
 const loginRoutes = require('./routes/loginRoute');
 const msgRoutes = require('./routes/msgRoute');
 const msgListRoute = require('./routes/msgListRoute');
+const deleteChatRoute = require('./routes/deleteChatRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
@@ -28,6 +29,7 @@ app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 app.use('/msg', msgRoutes);
 app.use('/msglist', msgListRoute);
+app.use('/dltchat', deleteChatRoute);
 //foriegn key relation 
 User.hasMany(Msg);
 Msg.belongsTo(User);

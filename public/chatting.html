@@ -88,14 +88,31 @@
             border-color: rgba(143, 139, 232, 255);
         }
 
+        .actionBtn {
+            /* border: 2px solid black; */
+            width: 165px;
+            margin-top: 1px;
+            margin-left: 1050px;
+            padding: 1px;
+        }
+
+        #clearChatBtn {
+            width: 81px;
+        }
+
         #logoutBtn {
-            margin-left: 92%;
+            margin-top: 1px;
+            margin-left: 12px;
         }
     </style>
 </head>
 
 <body>
-    <button type="button" class="button" id="logoutBtn">Logout</button>
+    <div class="actionBtn">
+        <button type="button" class="button" id="clearChatBtn">Clear Chat</button>
+        <button type="button" class="button" id="logoutBtn">Logout</button>
+    </div>
+
     <div class="chatBody">
         <img src="wassup.png" alt="logo" id="brandingImg">
         <h2 id="brandingText">T-chat</h2>

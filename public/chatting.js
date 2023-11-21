@@ -1,6 +1,7 @@
 const chatForm = document.getElementById('chat-form');
 const logoutBtn = document.getElementById('logoutBtn');
 const chatMsg = document.getElementById('chatMsg');
+const clearChatBtn = document.getElementById('clearChatBtn');
 const info = JSON.parse(localStorage.getItem("info"));
 const token = info.token;
 //logout button to move login page
@@ -26,7 +27,24 @@ chatForm.addEventListener('submit', async (e) => {
         console.log(err);
     }
 });
-
+//clearing all chat from the db for a user
+clearChatBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    try {
+        const flag = confirm('are sure want to delete the chats?')
+        if (flag) {
+            await axios.delete(`http://localhost:3000/dltchat`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token,
+                }
+            });
+            window.location.reload;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
 //when page refresh msgs retrive from db
 (async () => {
     let result;
