@@ -18,6 +18,7 @@ const Msg = require('./models/msgModel');
 const signUpRoutes = require('./routes/signUpRoutes');
 const loginRoutes = require('./routes/loginRoute');
 const msgRoutes = require('./routes/msgRoute');
+const msgListRoute = require('./routes/msgListRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
@@ -26,6 +27,7 @@ app.use(cors({
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 app.use('/msg', msgRoutes);
+app.use('/msglist', msgListRoute);
 //foriegn key relation 
 User.hasMany(Msg);
 Msg.belongsTo(User);

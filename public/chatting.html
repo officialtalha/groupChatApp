@@ -66,26 +66,22 @@
         }
 
         .chat-msg {
-            color: rgba(143, 139, 232, 255);
             margin-top: 7px;
             padding: 5px;
             /* border: 2px solid rgb(140, 140, 21); */
             /* background-color: rgb(232, 225, 245); */
             height: 408px;
             border-radius: 8px;
+            overflow-y: auto;
         }
 
         .chat-msg p {
-            font-weight: bold;
-            padding-left: 25px;
-            color: white;
-
-        }
-
-        .incomingMsg {
-            border-radius: 9px;
-            width: 25%;
             background-color: rgba(143, 139, 232, 255);
+            color: white;
+            border-radius: 5px;
+            padding-left: 5px;
+            margin-top: 2px;
+            /* border: 2px solid black; */
         }
 
         hr {
@@ -104,10 +100,7 @@
         <img src="wassup.png" alt="logo" id="brandingImg">
         <h2 id="brandingText">T-chat</h2>
         <hr>
-        <div class="chat-msg">
-            <div class="incomingMsg">
-                <p>msg will shoing here..</p>
-            </div>
+        <div class="chat-msg" id="chatMsg">
         </div>
         <hr>
         <div class="txtMsg">
