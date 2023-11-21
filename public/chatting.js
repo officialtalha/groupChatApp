@@ -19,7 +19,7 @@ chatForm.addEventListener('submit', async (e) => {
             message,
             token
         };
-
+        document.getElementById('msg').value = null;
         const result = await axios.post(`http://localhost:3000/msg`, obj);
         // console.log(result);
     } catch (err) {
@@ -29,18 +29,24 @@ chatForm.addEventListener('submit', async (e) => {
 
 //when page refresh msgs retrive from db
 (async () => {
-    const result = await axios.get(`http://localhost:3000/msglist`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token,
+    let result;
+    setInterval(async () => {
+        chatMsg.innerHTML = '';
+        result = await axios.get(`http://localhost:3000/msglist`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            }
+        });
+        const name = result.data.name;
+        for (let i = 0; i < result.data.message.length; i++) {
+            // console.log(result.data.message[i].message);
+            const p = document.createElement('p');
+            p.appendChild(document.createTextNode(`${result.data.name}: ${result.data.message[i].message}`));
+            chatMsg.appendChild(p);
         }
-    });
-    const name = result.data.name;
-    for (let i = 0; i < result.data.message.length; i++) {
-        // console.log(result.data.message[i].message);
-        const p = document.createElement('p');
-        p.appendChild(document.createTextNode(`${result.data.name}: ${result.data.message[i].message}`));
-        chatMsg.appendChild(p);
-    }
-    console.log(name);
+
+        // console.log(name);
+    }, 2000);
+
 })();
