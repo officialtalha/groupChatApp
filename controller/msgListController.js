@@ -6,6 +6,7 @@ exports.msgListControllerGetRcv = async (req, res) => {
         const loggedInUserId = req.user.id;
         const loggedInUserName = req.user.name;
         let recieverId = req.params.recieverId;
+
         const result = await Msg.findAll({
             where: {
                 [Sequelize.Op.or]: [
@@ -13,7 +14,7 @@ exports.msgListControllerGetRcv = async (req, res) => {
                     { senderId: recieverId, receiverId: loggedInUserId }
                 ]
             },
-            order: [['timestamp', 'ASC']]
+            order: [['createdAt', 'ASC']]
         });
         res.status(200).json({ result, success: true });
     } catch (err) {

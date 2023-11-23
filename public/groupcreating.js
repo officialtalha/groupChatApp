@@ -53,9 +53,16 @@ cancelBtn.addEventListener('click', async (e) => {
                 const grpname = document.getElementById('group-name').value;
                 const users = document.querySelectorAll('.chbx-class');
                 // console.log(users);
+                users.forEach((user) => {
+                    if (user.checked) {
+                        console.log(user.id);
+                    }
+                });
                 const usersId = [];
                 users.forEach((user) => {
-                    usersId.push(user.id);
+                    if (user.checked) {
+                        usersId.push(user.id);
+                    }
                 });
                 const members = usersId.join();
                 const obj = {

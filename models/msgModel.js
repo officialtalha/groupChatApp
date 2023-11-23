@@ -30,8 +30,8 @@ const Msg = sequelize.define('Message', {
         allowNull: false,
     },
     timestamp: {
-        type: Sequelise.DATE,
-        defaultValue: Sequelise.NOW,
+        type: Sequelise.STRING,
+        allowNull: false,
     }
 });
 

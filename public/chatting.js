@@ -102,12 +102,13 @@ clearChatBtn.addEventListener('click', async (e) => {
                             'Authorization': token,
                         }
                     });
-                    console.log(result.data);
+                    // console.log(result);
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
-                        const time = new Date(result.data.result[i].timestamp);
-                        const hours = time.getUTCHours();
-                        const minutes = time.getUTCMinutes();
+                        const time = result.data.result[i].timestamp;
+                        const [hour, minute, sec] = time.split(':');
+                        const hours = Number(hour);
+                        const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
