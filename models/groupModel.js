@@ -1,7 +1,7 @@
 const Sequelise = require('sequelize');
 const sequelize = require('../util/database');
 
-const Msg = sequelize.define('Message', {
+const Grp = sequelize.define('Group', {
     id: {
         type: Sequelise.INTEGER,
         allowNull: false,
@@ -9,30 +9,18 @@ const Msg = sequelize.define('Message', {
         autoIncrement: true,
         unique: true
     },
-    senderId: {
-        type: Sequelise.INTEGER,
-        allowNull: false,
-    },
-    senderName: {
+    GroupName: {
         type: Sequelise.STRING,
         allowNull: false,
     },
-    receiverId: {
+    adminId: {
         type: Sequelise.INTEGER,
         allowNull: false,
     },
-    receiverName: {
+    members: {
         type: Sequelise.STRING,
         allowNull: false,
-    },
-    messageContent: {
-        type: Sequelise.TEXT,
-        allowNull: false,
-    },
-    timestamp: {
-        type: Sequelise.DATE,
-        defaultValue: Sequelise.NOW,
     }
 });
 
-module.exports = Msg;
+module.exports = Grp;

@@ -1,19 +1,38 @@
+const Sequelize = require('sequelize');
 const Msg = require('../models/msgModel');
-const jwt = require('jsonwebtoken');
-exports.msgListControllerGet = async (req, res) => {
+const User = require('../models/userModel');
+exports.msgListControllerGetRcv = async (req, res) => {
     try {
-        const id = req.user.id;
-        const name = req.user.name;
+        const loggedInUserId = req.user.id;
+        const loggedInUserName = req.user.name;
+        let recieverId = req.params.recieverId;
         const result = await Msg.findAll({
             where: {
-                userId: id
-            }
+                [Sequelize.Op.or]: [
+                    { senderId: loggedInUserId, receiverId: recieverId },
+                    { senderId: recieverId, receiverId: loggedInUserId }
+                ]
+            },
+            order: [['timestamp', 'ASC']]
         });
-        res.status(200).json({ message: result, success: true, name });
+        res.status(200).json({ result, success: true });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: err, success: false });
     }
 };
-
-//attributes: ['message'],
+exports.msgListControllerGetSnd = async (req, res) => {
+    try {
+        const senderId = req.params.senderId;
+        const result = await User.findOne({
+            attributes: ['name'],
+            where: {
+                id: senderId
+            }
+        });
+        res.status(200).json({ result: result.name, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};

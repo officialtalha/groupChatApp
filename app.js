@@ -20,6 +20,8 @@ const loginRoutes = require('./routes/loginRoute');
 const msgRoutes = require('./routes/msgRoute');
 const msgListRoute = require('./routes/msgListRoute');
 const deleteChatRoute = require('./routes/deleteChatRoute');
+const getAllUsersRoute = require('./routes/getAllUsersRoute');
+const groupRoute = require('./routes/groupRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
@@ -30,9 +32,13 @@ app.use('/login', loginRoutes);
 app.use('/msg', msgRoutes);
 app.use('/msglist', msgListRoute);
 app.use('/dltchat', deleteChatRoute);
+app.use('/getallusers', getAllUsersRoute);
+app.use('/group', groupRoute);
 //foriegn key relation 
-User.hasMany(Msg);
-Msg.belongsTo(User);
+User.hasMany(Msg, { foreignKey: 'senderId' });
+User.hasMany(Msg, { foreignKey: 'receiverId' });
+// Msg.belongsTo(User);
+
 
 //server listing 
 (async () => {

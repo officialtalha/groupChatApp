@@ -12,7 +12,7 @@ exports.loginControllerPost = async (req, res) => {
         if (isValid != null) {
             const cracked = await bcrypt.compare(password, isValid.password);
             if (cracked) {
-                const token = await jwt.sign({ id: isValid.id }, process.env.JWT_SecretKey);
+                const token = jwt.sign({ id: isValid.id }, process.env.JWT_SecretKey);
                 res.status(200).json({ message: 'login Successful!', success: true, token, name: isValid.name });
             } else {
                 res.status(200).json({ message: 'password is incorrect!', success: false });

@@ -4,20 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="https://predyktable.ai/wp-content/uploads/2023/06/Phone-icon-150x150.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@300&display=swap" rel="stylesheet">
+    <title>T-Chat</title>
     <style>
         .chatBody {
-            width: 50%;
+            width: 613px;
             height: 510px;
-            margin: auto;
-            margin-top: -31px;
+            margin-left: 272px;
+            margin-top: -625px;
             border: 2px solid rgba(143, 139, 232, 255);
             border-radius: 15px;
             padding: 30px;
             background-color: white;
+        }
+
+        .welcoming {
+            margin-top: 1px;
+            margin-left: 1px;
+        }
+
+        .leftPanel {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            width: 187px;
+            height: 565px;
+            margin-left: 10px;
+            margin-top: -31px;
+            padding: 30px;
+        }
+
+        .leftPanel h2 {
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .leftPanel hr {
+            margin-top: -19px;
+        }
+
+        .leftPanelBody {
+            /* border: 2px solid black; */
+            width: 185px;
+            height: 500px;
+        }
+
+        .leftPanelBody p {
+            font-size: 16px;
+            color: white;
+            font-family: 'Marhey', sans-serif;
+            margin-left: 4px;
+            margin-top: 10px;
+            background-color: rgba(143, 139, 232, 255);
+            border-radius: 10px;
+            width: 162px;
+            padding-left: 15px;
+            cursor: pointer;
         }
 
         #brandingImg {
@@ -65,7 +111,54 @@
             width: 56px;
         }
 
+        .welcoming {
+            margin-top: 7px;
+            padding: 5px;
+            /* border: 2px solid rgb(140, 140, 21); */
+            /* background-color: rgb(232, 225, 245); */
+            height: 408px;
+            border-radius: 8px;
+        }
+
+        #emo1 {
+            font-size: 46px;
+            margin-top: 12px;
+            margin-left: 93px;
+        }
+
+        #emo2 {
+            font-size: 46px;
+            margin-top: -108px;
+            margin-left: 391px;
+        }
+
+        #p1 {
+            font-size: 70px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -128px;
+            margin-left: 162px;
+        }
+
+        #p-name {
+            font-size: 45px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -166px;
+            margin-left: 268px;
+        }
+
+        #p2 {
+            font-size: 35px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -38px;
+            margin-left: 15px;
+            width: 564px;
+        }
+
         .chat-msg {
+
             margin-top: 7px;
             padding: 5px;
             /* border: 2px solid rgb(140, 140, 21); */
@@ -89,41 +182,62 @@
         }
 
         .actionBtn {
-            /* border: 2px solid black; */
-            width: 165px;
+            /* border: 2px soli d black; */
+            width: 267px;
             margin-top: 1px;
-            margin-left: 1050px;
+            margin-left: 996px;
             padding: 1px;
+        }
+
+        #createGroupBtn {
+            width: 95px;
+            cursor: pointer;
         }
 
         #clearChatBtn {
             width: 81px;
+            margin-left: 1px;
+            cursor: pointer;
         }
 
         #logoutBtn {
             margin-top: 1px;
-            margin-left: 12px;
+            margin-left: 1px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
     <div class="actionBtn">
+        <button type="button" class="button" id="createGroupBtn">create group</button>
         <button type="button" class="button" id="clearChatBtn">Clear Chat</button>
         <button type="button" class="button" id="logoutBtn">Logout</button>
     </div>
-
+    <!-- left panel code -->
+    <div class="leftPanel">
+        <h2 id="welcome-user"></h2>
+        <hr>
+        <div class="leftPanelBody" id="left-panel-body">
+        </div>
+    </div>
+    <!-- chat body code -->
     <div class="chatBody">
         <img src="wassup.png" alt="logo" id="brandingImg">
         <h2 id="brandingText">T-chat</h2>
         <hr>
-        <div class="chat-msg" id="chatMsg">
+        <div class="welcoming" id="chatMsg">
+            <p id="emo1">🤩</p>
+            <p id="emo2">😍</p>
+            <p id="p1">Hi!</p>
+            <p id="p-name"></p>
+            <p id="p2">please select any contact or group.</p>
         </div>
         <hr>
         <div class="txtMsg">
             <form id="chat-form">
-                <input type="text" name="msg" id="msg" placeholder="Type here..." required>
-                <button type="submit" class="button">send</button>
+                <input type="text" style="display: none;" name="msg" id="msgText" placeholder="Type here..." required>
+                <button type="submit" id="msgSendBtn" class="button" style="display: none;">send</button>
             </form>
         </div>
     </div>
