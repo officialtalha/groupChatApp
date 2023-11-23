@@ -17,3 +17,20 @@ exports.getAllUsersControllerGet = async (req, res) => {
         res.status(500).json({ message: err, success: false });
     }
 };
+exports.getAllUsersControllerGetParam = async (req, res) => {
+    try {
+        const selectedRceiverId = req.params.recieverId;
+        const result = await User.findAll({
+            attributes: [
+                'name'
+            ],
+            where: {
+                id: selectedRceiverId
+            }
+        });
+        res.status(200).json({ result, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};

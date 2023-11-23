@@ -22,30 +22,36 @@ cancelBtn.addEventListener('click', async (e) => {
         });
         const allUsers = result.data.result;
         const loggedInUserId = result.data.loggedInUserId;
-        for (let x = 0; x < allUsers.length; x++) {
-            if (allUsers[x].id == loggedInUserId) {
-                allUsers.splice(x, 1);
+
+        // for (let x = 0; x < allUsers.length; x++) {
+        //     if (allUsers[x].id == loggedInUserId) {
+        //         allUsers.splice(x, 1);
+        //     }
+        // }
+
+        //showing checkboxes
+        for (let i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].id != loggedInUserId) {
+                const label = document.createElement('label');
+                label.id = 'label2';
+                label.setAttribute("for", "username");
+                label.appendChild(document.createTextNode(`${allUsers[i].name}`));
+
+                const input = document.createElement('input');
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("class", "chbx-class");
+                input.setAttribute("name", "username");
+                input.setAttribute("id", allUsers[i].id);
+                input.setAttribute("value", allUsers[i].name);
+
+                const br = document.createElement('br');
+
+                members.appendChild(label);
+                members.appendChild(input);
+                members.appendChild(br);
             }
         }
-        for (let i = 0; i < allUsers.length; i++) {
-            const label = document.createElement('label');
-            label.id = 'label2';
-            label.setAttribute("for", "username");
-            label.appendChild(document.createTextNode(`${allUsers[i].name}`));
 
-            const input = document.createElement('input');
-            input.setAttribute("type", "checkbox");
-            input.setAttribute("class", "chbx-class");
-            input.setAttribute("name", "username");
-            input.setAttribute("id", allUsers[i].id);
-            input.setAttribute("value", allUsers[i].name);
-
-            const br = document.createElement('br');
-
-            members.appendChild(label);
-            members.appendChild(input);
-            members.appendChild(br);
-        }
         //create button action 
         groupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -53,21 +59,21 @@ cancelBtn.addEventListener('click', async (e) => {
                 const grpname = document.getElementById('group-name').value;
                 const users = document.querySelectorAll('.chbx-class');
                 // console.log(users);
-                users.forEach((user) => {
-                    if (user.checked) {
-                        console.log(user.id);
-                    }
-                });
+                // users.forEach((user) => {
+                //     if (user.checked) {
+                //         console.log(user.id);
+                //     }
+                // });
                 const usersId = [];
+                usersId.push(loggedInUserId.toString());
                 users.forEach((user) => {
                     if (user.checked) {
                         usersId.push(user.id);
                     }
                 });
-                const members = usersId.join();
                 const obj = {
                     GroupName: grpname,
-                    members,
+                    members: usersId,
                     admin: loggedInUserId
                 }
                 await axios.post(`http://localhost:3000/group`, obj);

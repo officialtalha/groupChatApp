@@ -194,16 +194,100 @@
             cursor: pointer;
         }
 
+        #createGroupBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
         #clearChatBtn {
             width: 81px;
             margin-left: 1px;
             cursor: pointer;
         }
 
+        #clearChatBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
         #logoutBtn {
             margin-top: 1px;
             margin-left: 1px;
             cursor: pointer;
+        }
+
+        #logoutBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        #grpActionBtn {
+            width: 99px;
+            cursor: pointer;
+        }
+
+        #grpActionBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .grpActionBtnDiv {
+            width: 100px;
+            /* border: 2px solid black; */
+            margin-left: 997px;
+            margin-top: -540px;
+        }
+
+        #selectedUser {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            /* border: 2px solid brown; */
+        }
+
+        #selectedUserDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: 1px;
+            margin-left: 314px;
+            /* border: 2px solid black; */
+        }
+
+        #selectedGroup {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            /* border: 2px solid brown; */
+        }
+
+        #selectedGroupDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: -103px;
+            margin-left: 314px;
+            /* border: 2px solid black; */
+        }
+
+        .changeNameBtnDiv {
+            margin-left: 1100px;
+            margin-top: -65px;
+        }
+
+        #changeNameBtn {
+            width: 103px;
+        }
+
+        #changeNameBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .inviteBtnDiv {
+            margin-left: 998px;
+            margin-top: 4px;
+        }
+
+        #inviteBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
         }
     </style>
 </head>
@@ -219,6 +303,7 @@
         <h2 id="welcome-user"></h2>
         <hr>
         <div class="leftPanelBody" id="left-panel-body">
+            <div class="groupSection" id="groupSection"></div>
         </div>
     </div>
     <!-- chat body code -->
@@ -240,6 +325,21 @@
                 <button type="submit" id="msgSendBtn" class="button" style="display: none;">send</button>
             </form>
         </div>
+    </div>
+    <div class="grpActionBtnDiv" id="grpActionBtnDiv">
+        <button type="button" class="button" id="grpActionBtn" style="display: none;">Group Action</button>
+    </div>
+    <div id="selectedUserDiv">
+        <h3 id="selectedUser"></h3>
+    </div>
+    <div id="selectedGroupDiv">
+        <h3 id="selectedGroup"></h3>
+    </div>
+    <div class="changeNameBtnDiv" id="changeNameBtnDiv">
+        <button type="button" class="button" id="changeNameBtn" style="display: none;">Change Name</button>
+    </div>
+    <div class="inviteBtnDiv" id="inviteBtnDiv">
+        <button type="button" class="button" id="inviteBtn" style="display: none;">Invite</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
     <script src="chatting.js"></script>

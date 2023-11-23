@@ -22,6 +22,7 @@ const msgListRoute = require('./routes/msgListRoute');
 const deleteChatRoute = require('./routes/deleteChatRoute');
 const getAllUsersRoute = require('./routes/getAllUsersRoute');
 const groupRoute = require('./routes/groupRoute');
+const groupmsgRoute = require('./routes/groupmsgRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
@@ -34,6 +35,7 @@ app.use('/msglist', msgListRoute);
 app.use('/dltchat', deleteChatRoute);
 app.use('/getallusers', getAllUsersRoute);
 app.use('/group', groupRoute);
+app.use('/groupmsg', groupmsgRoute);
 //foriegn key relation 
 User.hasMany(Msg, { foreignKey: 'senderId' });
 User.hasMany(Msg, { foreignKey: 'receiverId' });
