@@ -6,5 +6,6 @@ const auth = require('../middleware/jwt_decode');
 router.use(bodyParser.json());
 router.get('/', auth.authenticate, getAllUsersController.getAllUsersControllerGet);
 router.get('/:recieverId', auth.authenticate, getAllUsersController.getAllUsersControllerGetParam);
+// router.get('/:allUsersfromThisGroupRoute/:allUsersfromThisGroup', getAllUsersController.getAllUsersControllerGetParamOnlyUsersMatchedInGroupModel);
 
 module.exports = router;

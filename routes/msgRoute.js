@@ -5,5 +5,6 @@ const msgController = require('../controller/msgController');
 router.use(bodyParser.json());
 
 router.post('/', msgController.msgControllerPost);
+router.post('/:forGroup', msgController.msgControllerPostForGroup);
 
 module.exports = router;

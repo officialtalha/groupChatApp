@@ -5,8 +5,10 @@ const groupController = require('../controller/groupController');
 const auth = require('../middleware/jwt_decode');
 router.use(bodyParser.json());
 
-router.post('/', groupController.groupControllerPost);
+router.post('/', groupController.groupControllerPostForCreatingGroup);
+router.put('/', groupController.groupControllerPutForChangeName);
 router.get('/', auth.authenticate, groupController.groupControllerGet);
-router.get('/:groupId', groupController.groupControllerGetParam);
+router.get('/:groupId', auth.authenticate, groupController.groupControllerGetParam);
+router.get('/:allUsersfromThisGroupEndpoint/:groupId', groupController.groupControllerGetParamAllUsersfromThisGroup);
 
 module.exports = router;

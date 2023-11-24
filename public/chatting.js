@@ -11,6 +11,8 @@ const groupSection = document.getElementById('groupSection');
 const grpActionBtn = document.getElementById('grpActionBtn');
 const changeNameBtn = document.getElementById('changeNameBtn');
 const inviteBtn = document.getElementById('inviteBtn');
+const changeNameBtnDiv = document.getElementById('changeNameBtnDiv');
+const inviteBtnDiv = document.getElementById('inviteBtnDiv');
 const selectedUser = document.getElementById('selectedUser');
 const selectedGroup = document.getElementById('selectedGroup');
 const info = JSON.parse(localStorage.getItem("info"));
@@ -24,13 +26,19 @@ createGroupBtn.addEventListener('click', (e) => {
     window.location.href = './groupcreating.html';
 });
 
+//invite button to move invite page
+inviteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = './invite.html';
+});
+
 //logout button to move login page
 logoutBtn.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = './login.html';
 });
 
-//new msgs storing into db
+//new msgs storing into Message model
 chatForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -47,7 +55,9 @@ chatForm.addEventListener('submit', async (e) => {
                 groupId
             };
             document.getElementById('msgText').value = null;
-            const result = await axios.post(`http://localhost:3000/groupmsg`, obj, {
+            //this var is only for distinguigsh between two post routes in the BE
+            const forGroup = 1;
+            const result = await axios.post(`http://localhost:3000/msg/${forGroup}`, obj, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token,
@@ -109,6 +119,8 @@ clearChatBtn.addEventListener('click', async (e) => {
 
         //showing logged in user name at top of the left side panel 
         welcomeHeading.appendChild(document.createTextNode(`welcome ${loggedInUserName}`));
+
+        //showing name of the loggen in user in welcoming message section when user refresh chat page
         document.getElementById('p-name').appendChild(document.createTextNode(`${loggedInUserName}`));
 
         //removing logged in user from the array 
@@ -140,7 +152,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg';
 
-                    //disappearing the group buttons from to-right
+                    //disappearing the group buttons from top-right
                     grpActionBtn.setAttribute("style", "display: none;");
                     changeNameBtn.setAttribute("style", "display: none;");
                     inviteBtn.setAttribute("style", "display: none;");
@@ -161,10 +173,12 @@ clearChatBtn.addEventListener('click', async (e) => {
                             'Authorization': token,
                         }
                     });
+
                     //removing selected group initially
                     selectedUser.innerText = '';
                     selectedGroup.innerText = '';
                     selectedUser.appendChild(document.createTextNode(`${selectedRceiverName.data.result[0].name}`));
+
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
                         const time = result.data.result[i].timestamp;
@@ -196,15 +210,15 @@ clearChatBtn.addEventListener('click', async (e) => {
                 'Authorization': token
             }
         });
-        console.log(groupResult.data.members);
-        const allGroups = groupResult.data.members;
+        // console.log(groupResult.data);
+        const allGroups = groupResult.data.arr;
 
         // showin all the groups in the side panel 
         for (let z = 0; z < allGroups.length; z++) {
             const p2 = document.createElement('p');
             p2.id = allGroups[z].id;
             p2.className = 'clickableGroup';
-            p2.appendChild(document.createTextNode(`Group-${allGroups[z].GroupName}`));
+            p2.appendChild(document.createTextNode(`Group-${allGroups[z].groupName}`));
             groupSection.appendChild(p2);
         }
 
@@ -213,8 +227,14 @@ clearChatBtn.addEventListener('click', async (e) => {
         contactGroups.forEach(async (contactGroup) => {
             contactGroup.addEventListener('click', async () => {
                 try {
+
+                    //first disappear the action button
+                    // grpActionBtn.setAttribute("style", "display: none;");
+
+
                     //storing in LS that we are in group mode
                     localStorage.setItem('isGroup', 1);
+
                     //manage welcome in msg section 
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
@@ -229,6 +249,15 @@ clearChatBtn.addEventListener('click', async (e) => {
                     changeNameBtn.removeAttribute('style');
                     inviteBtn.removeAttribute('style');
 
+                    //change name button action 
+                    changeNameBtn.onclick = async () => {
+                        try {
+                            window.location.href = './changegroupname.html';
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    };
+
                     //getting selected group name 
                     const selectedGroupName = await axios.get(`http://localhost:3000/group/${groupId}`, {
                         headers: {
@@ -236,16 +265,26 @@ clearChatBtn.addEventListener('click', async (e) => {
                             'Authorization': token
                         }
                     });
+                    console.log(selectedGroupName);
+                    //checking whether a user is admin or not 
+                    // if (selectedGroupName.data.loggedInUserId == selectedGroupName.data.result.adminId) {
+                    //     grpActionBtn.removeAttribute('style');
+                    // }
 
-                    //removing selected group initially
+                    // const hasStyleAttribute = grpActionBtn.getAttribute("style");
+                    // if (!grpActionBtn.hasAttribute("style")) {
+                    //     changeNameBtnDiv.className = 'changeNameBtnDiv1';
+                    //     inviteBtnDiv.className = 'inviteBtnDiv1';
+                    // }
+                    //removing selected group and user initially
                     selectedUser.innerText = '';
                     selectedGroup.innerText = '';
-
                     //adding group name at the top when user click on the group name 
-                    selectedGroup.appendChild(document.createTextNode(`${selectedGroupName.data.result.GroupName}`));
+                    selectedGroup.appendChild(document.createTextNode(`${selectedGroupName.data.result.groupName}`));
 
-
-                    const result = await axios.get(`http://localhost:3000/groupmsg/${groupId}`, {
+                    //this var is only for distinguish between two get routes in the BE
+                    const forGroup = 1;
+                    const result = await axios.get(`http://localhost:3000/msglist/${forGroup}/${groupId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token,
@@ -268,7 +307,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].msgContent} (${hoursampm}:${minutes} ${ampm})`));
+                        p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
                         chatMsg.appendChild(p);
                     }
                 } catch (err) {

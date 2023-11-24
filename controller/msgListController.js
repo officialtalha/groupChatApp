@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const Msg = require('../models/msgModel');
 const User = require('../models/userModel');
-exports.msgListControllerGetRcv = async (req, res) => {
+exports.msgListControllerGet = async (req, res) => {
     try {
         const loggedInUserId = req.user.id;
         const loggedInUserName = req.user.name;
@@ -22,16 +22,19 @@ exports.msgListControllerGetRcv = async (req, res) => {
         res.status(500).json({ message: err, success: false });
     }
 };
-exports.msgListControllerGetSnd = async (req, res) => {
+exports.msgListControllerGetForGroup = async (req, res) => {
     try {
-        const senderId = req.params.senderId;
-        const result = await User.findOne({
-            attributes: ['name'],
+        const loggedInUserId = req.user.id;
+        const loggedInUserName = req.user.name;
+        let groupId = req.params.groupId;
+
+        const result = await Msg.findAll({
             where: {
-                id: senderId
-            }
+                groupId
+            },
+            order: [['createdAt', 'ASC']]
         });
-        res.status(200).json({ result: result.name, success: true });
+        res.status(200).json({ result, success: true });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: err, success: false });

@@ -1,6 +1,7 @@
 //configuring environment variable
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, 'config', '.env') });
+
 //importing modules
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,11 +10,16 @@ const Sequelise = require('sequelize');
 const sequelize = require('./util/database');
 
 const app = express();
+
 //setup port number
 const PORT = process.env.PORT || 3000;
+
 //importing models
 const User = require('./models/userModel');
 const Msg = require('./models/msgModel');
+const Grp = require('./models/groupModel');
+const usersGroups = require('./models/usersGroupsModel');
+
 //importing routes
 const signUpRoutes = require('./routes/signUpRoutes');
 const loginRoutes = require('./routes/loginRoute');
@@ -22,7 +28,8 @@ const msgListRoute = require('./routes/msgListRoute');
 const deleteChatRoute = require('./routes/deleteChatRoute');
 const getAllUsersRoute = require('./routes/getAllUsersRoute');
 const groupRoute = require('./routes/groupRoute');
-const groupmsgRoute = require('./routes/groupmsgRoute');
+const usersGroupsRoute = require('./routes/usersGroupsRoute');
+
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
@@ -35,12 +42,20 @@ app.use('/msglist', msgListRoute);
 app.use('/dltchat', deleteChatRoute);
 app.use('/getallusers', getAllUsersRoute);
 app.use('/group', groupRoute);
-app.use('/groupmsg', groupmsgRoute);
+app.use('/usersgroups', usersGroupsRoute);
+
 //foriegn key relation 
+
+//user-message has one to many relationship
 User.hasMany(Msg, { foreignKey: 'senderId' });
 User.hasMany(Msg, { foreignKey: 'receiverId' });
-// Msg.belongsTo(User);
 
+//user-group has many to many relationship
+User.belongsToMany(Grp, { through: usersGroups });
+Grp.belongsToMany(User, { through: usersGroups });
+
+//group-message has one to many relationship
+Grp.hasMany(Msg, { foreignKey: 'groupId' });
 
 //server listing 
 (async () => {

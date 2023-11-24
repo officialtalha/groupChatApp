@@ -1,9 +1,30 @@
 const Grp = require('../models/groupModel');
+const usersGroups = require('../models/usersGroupsModel');
 const Sequelise = require('sequelize');
-exports.groupControllerPost = async (req, res) => {
+
+exports.groupControllerPostForCreatingGroup = async (req, res) => {
     try {
-        const { GroupName, members, admin } = req.body;
-        await Grp.create({ GroupName, adminId: admin, members });
+        const { groupName, adminId } = req.body;
+        //entry in group model
+        const GroupId = await Grp.create({ groupName, adminId });
+        res.status(200).json({ groupId: GroupId.id, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};
+exports.groupControllerPutForChangeName = async (req, res) => {
+    try {
+        const { groupName, id } = req.body;
+
+        await Grp.update({
+            groupName
+        },
+            {
+                where: {
+                    id
+                }
+            });
         res.status(200).json({ success: true });
     } catch (err) {
         console.log(err);
@@ -14,30 +35,57 @@ exports.groupControllerPost = async (req, res) => {
 exports.groupControllerGet = async (req, res) => {
     try {
         const loggedInUserId = req.user.id;
-        const id = loggedInUserId.toString();
-        const loggedInUserName = req.user.name;
-        const members = await Grp.findAll({
-            attributes: ['id', 'GroupName'],
+
+        //first getting groups ids from which user belongs to
+        const groupsIds = await usersGroups.findAll({
+            attributes: ['GroupId'],
             where: {
-                members: {
-                    [Sequelise.Op.like]: `%${id}%`
-                }
+                userId: loggedInUserId
             }
         });
-        res.status(200).json({ members, success: true });
+        let arr = [];
+        for (let i = 0; i < groupsIds.length; i++) {
+            {
+                const result = await Grp.findAll({
+                    attributes: ['id', 'groupName'],
+                    where: {
+                        id: groupsIds[i].dataValues.GroupId
+                    }
+                });
+                arr.push({ id: result[0].dataValues.id, groupName: result[0].dataValues.groupName });
+            }
+        }
+        res.status(200).json({ arr, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};
+exports.groupControllerGetParam = async (req, res) => {
+    try {
+        const selectedGroupId = req.params.groupId;
+        const loggedInUserId = req.user.id;
+        const result = await Grp.findOne({
+            where: {
+                id: selectedGroupId
+            }
+        });
+        res.status(200).json({ result, loggedInUserId, success: true });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: err, success: false });
     }
 };
 
-exports.groupControllerGetParam = async (req, res) => {
+exports.groupControllerGetParamAllUsersfromThisGroup = async (req, res) => {
     try {
-        const selectedGroupId = req.params.groupId;
-        const result = await Grp.findOne({
-            attributes: ['GroupName'],
+        const groupId = req.params.groupId;
+        const result = await usersGroups.findAll({
+            attributes: [
+                'userId'
+            ],
             where: {
-                id: selectedGroupId
+                GroupId: groupId
             }
         });
         res.status(200).json({ result, success: true });

@@ -9,27 +9,19 @@ const Msg = sequelize.define('Message', {
         autoIncrement: true,
         unique: true
     },
-    senderId: {
-        type: Sequelise.INTEGER,
-        allowNull: false,
-    },
     senderName: {
         type: Sequelise.STRING,
         allowNull: false,
     },
-    receiverId: {
-        type: Sequelise.INTEGER,
-        allowNull: false,
-    },
     receiverName: {
         type: Sequelise.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     messageContent: {
         type: Sequelise.TEXT,
         allowNull: false,
     },
-    timestamp: {
+    timeStamp: {
         type: Sequelise.STRING,
         allowNull: false,
     }

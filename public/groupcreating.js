@@ -1,9 +1,9 @@
 const groupForm = document.getElementById('grp-form');
 const cancelBtn = document.getElementById('cancelBtn');
-const info = JSON.parse(localStorage.getItem('info'));
 const members = document.getElementById('members');
-const token = info.token;
 const adminNameHeading = document.getElementById('adminName');
+const info = JSON.parse(localStorage.getItem('info'));
+const token = info.token;
 const adminName = info.name;
 adminNameHeading.innerText = `Admin: ${adminName}`;
 //cancel button action
@@ -22,12 +22,6 @@ cancelBtn.addEventListener('click', async (e) => {
         });
         const allUsers = result.data.result;
         const loggedInUserId = result.data.loggedInUserId;
-
-        // for (let x = 0; x < allUsers.length; x++) {
-        //     if (allUsers[x].id == loggedInUserId) {
-        //         allUsers.splice(x, 1);
-        //     }
-        // }
 
         //showing checkboxes
         for (let i = 0; i < allUsers.length; i++) {
@@ -56,27 +50,35 @@ cancelBtn.addEventListener('click', async (e) => {
         groupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
-                const grpname = document.getElementById('group-name').value;
+                const groupName = document.getElementById('group-name').value;
+                const obj = {
+                    groupName,
+                    adminId: loggedInUserId
+                }
+                //for creating group in group model
+                const result = await axios.post(`http://localhost:3000/group`, obj);
+                const GroupId = result.data.groupId;
+
+                //for creating entry in users-groups model after getting newly created group id
+                await axios.post(`http://localhost:3000/usersgroups`, {
+                    userId: loggedInUserId,
+                    GroupId
+                });
                 const users = document.querySelectorAll('.chbx-class');
-                // console.log(users);
-                // users.forEach((user) => {
-                //     if (user.checked) {
-                //         console.log(user.id);
-                //     }
-                // });
-                const usersId = [];
-                usersId.push(loggedInUserId.toString());
-                users.forEach((user) => {
-                    if (user.checked) {
-                        usersId.push(user.id);
+                users.forEach(async (user) => {
+                    try {
+                        if (user.checked) {
+                            const userId = user.id;
+                            const obj1 = {
+                                userId,
+                                GroupId
+                            };
+                            const result = await axios.post(`http://localhost:3000/usersgroups`, obj1);
+                        }
+                    } catch (err) {
+                        console.log(err);
                     }
                 });
-                const obj = {
-                    GroupName: grpname,
-                    members: usersId,
-                    admin: loggedInUserId
-                }
-                await axios.post(`http://localhost:3000/group`, obj);
                 window.location.href = './chatting.html';
             } catch (err) {
                 console.log(err);

@@ -34,3 +34,22 @@ exports.getAllUsersControllerGetParam = async (req, res) => {
         res.status(500).json({ message: err, success: false });
     }
 };
+// exports.getAllUsersControllerGetParamOnlyUsersMatchedInGroupModel = async (req, res) => {
+//     try {
+//         const userId = req.params.allUsersfromThisGroup;
+//         const result = await User.findAll({
+//             attributes: [
+//                 'name'
+//             ],
+//             where: {
+//                 id: {
+//                     [Sequelize.Op.not]: userId
+//                 }
+//             }
+//         });
+//         res.status(200).json({ result, success: true });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json({ message: err, success: false });
+//     }
+// };
