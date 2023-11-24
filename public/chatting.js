@@ -235,14 +235,16 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //storing in LS that we are in group mode
                     localStorage.setItem('isGroup', 1);
 
+                    groupId = contactGroup.id;
+                    localStorage.setItem('groupId', groupId);
+
                     //manage welcome in msg section 
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg'
 
-                    groupId = contactGroup.id;
-                    localStorage.setItem('groupId', groupId);
+
 
                     //appearing all the group buttons on the right-top
                     grpActionBtn.removeAttribute('style');
@@ -265,12 +267,29 @@ clearChatBtn.addEventListener('click', async (e) => {
                             'Authorization': token
                         }
                     });
-                    console.log(selectedGroupName);
-                    //checking whether a user is admin or not 
-                    // if (selectedGroupName.data.loggedInUserId == selectedGroupName.data.result.adminId) {
-                    //     grpActionBtn.removeAttribute('style');
-                    // }
+                    // console.log(selectedGroupName);
+                    // first it will normalise group action Btn
+                    // checking whether a user is admin or not 
+                    grpActionBtn.disabled = false;
+                    grpActionBtn.className = 'grpActionBtnClass';
+                    if (selectedGroupName.data.loggedInUserId != selectedGroupName.data.result.adminId) {
+                        grpActionBtn.disabled = true;
+                        grpActionBtn.className = 'disabledBtn';
+                    }
+                    // checking whether a user is admin or not 
+                    if (selectedGroupName.data.loggedInUserId != selectedGroupName.data.result.adminId) {
+                        grpActionBtn.disabled = true;
+                        grpActionBtn.className = 'disabledBtn';
+                    }
 
+                    //group action button action 
+                    grpActionBtn.onclick = async () => {
+                        try {
+                            window.location.href = './groupAdmin.html';
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    };
                     // const hasStyleAttribute = grpActionBtn.getAttribute("style");
                     // if (!grpActionBtn.hasAttribute("style")) {
                     //     changeNameBtnDiv.className = 'changeNameBtnDiv1';

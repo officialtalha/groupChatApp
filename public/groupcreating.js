@@ -9,7 +9,8 @@ adminNameHeading.innerText = `Admin: ${adminName}`;
 //cancel button action
 cancelBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    window.location.href = './chatting.html'
+    // window.location.href = './chatting.html'
+    window.history.back();
 });
 //when page refresh 
 (async () => {

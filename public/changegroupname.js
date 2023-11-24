@@ -4,7 +4,8 @@ const groupId = Number(localStorage.getItem('groupId'));
 const successMessage = document.getElementById('successMessage');
 cancelBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    window.location.href = './chatting.html';
+    // window.location.href = './chatting.html';
+    window.history.back();
 });
 
 changeBtn.addEventListener('submit', async (e) => {

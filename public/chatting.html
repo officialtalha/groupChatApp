@@ -221,12 +221,19 @@
             color: white;
         }
 
-        #grpActionBtn {
+        .grpActionBtnClass {
             width: 99px;
             cursor: pointer;
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
         }
 
-        #grpActionBtn:hover {
+        .grpActionBtnClass:hover {
             background-color: rgba(143, 139, 232, 255);
             color: white;
         }
@@ -304,6 +311,22 @@
             margin-left: 998px;
             margin-top: -30px;
         }
+
+        .disabledBtn {
+            border-radius: 5px;
+            background-color: silver;
+            color: grey;
+            font-weight: bold;
+            border-width: 1px;
+            border-color: silver;
+            height: 30px;
+            width: 99px;
+        }
+
+        /* .disabledBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        } */
     </style>
 </head>
 
@@ -342,7 +365,8 @@
         </div>
     </div>
     <div class="grpActionBtnDiv" id="grpActionBtnDiv">
-        <button type="button" class="button" id="grpActionBtn" style="display: none;">Group Action</button>
+        <button type="button" class="grpActionBtnClass" id="grpActionBtn" style="display: none;">Group
+            Action</button>
     </div>
     <div id="selectedUserDiv">
         <h3 id="selectedUser"></h3>
