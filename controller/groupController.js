@@ -4,9 +4,9 @@ const Sequelise = require('sequelize');
 
 exports.groupControllerPostForCreatingGroup = async (req, res) => {
     try {
-        const { groupName, adminId } = req.body;
+        const { groupName } = req.body;
         //entry in group model
-        const GroupId = await Grp.create({ groupName, adminId });
+        const GroupId = await Grp.create({ groupName });
         res.status(200).json({ groupId: GroupId.id, success: true });
     } catch (err) {
         console.log(err);

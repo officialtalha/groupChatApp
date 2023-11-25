@@ -53,18 +53,26 @@ cancelBtn.addEventListener('click', async (e) => {
             try {
                 const groupName = document.getElementById('group-name').value;
                 const obj = {
-                    groupName,
-                    adminId: loggedInUserId
+                    groupName
                 }
                 //for creating group in group model
                 const result = await axios.post(`http://localhost:3000/group`, obj);
                 const GroupId = result.data.groupId;
 
                 //for creating entry in users-groups model after getting newly created group id
+                //this call for loggenin user to become part of the group 
                 await axios.post(`http://localhost:3000/usersgroups`, {
                     userId: loggedInUserId,
                     GroupId
                 });
+
+                //making logged in user the admin of the group 
+                await axios.post(`http://localhost:3000/admin`, {
+                    adminId: loggedInUserId,
+                    groupId: GroupId
+                });
+
+                //this is for all check boxes users
                 const users = document.querySelectorAll('.chbx-class');
                 users.forEach(async (user) => {
                     try {

@@ -267,17 +267,21 @@ clearChatBtn.addEventListener('click', async (e) => {
                             'Authorization': token
                         }
                     });
-                    // console.log(selectedGroupName);
+                    const loggedInUserId = selectedGroupName.data.loggedInUserId;
+
                     // first it will normalise group action Btn
-                    // checking whether a user is admin or not 
                     grpActionBtn.disabled = false;
                     grpActionBtn.className = 'grpActionBtnClass';
-                    if (selectedGroupName.data.loggedInUserId != selectedGroupName.data.result.adminId) {
-                        grpActionBtn.disabled = true;
-                        grpActionBtn.className = 'disabledBtn';
-                    }
+
                     // checking whether a user is admin or not 
-                    if (selectedGroupName.data.loggedInUserId != selectedGroupName.data.result.adminId) {
+                    const isAdmin = await axios.get(`http://localhost:3000/admin/${groupId}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': token
+                        }
+                    });
+
+                    if (isAdmin.data.message == 'not admin') {
                         grpActionBtn.disabled = true;
                         grpActionBtn.className = 'disabledBtn';
                     }

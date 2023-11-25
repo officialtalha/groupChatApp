@@ -19,6 +19,7 @@ const User = require('./models/userModel');
 const Msg = require('./models/msgModel');
 const Grp = require('./models/groupModel');
 const usersGroups = require('./models/usersGroupsModel');
+const Admin = require('./models/adminModel');
 
 //importing routes
 const signUpRoutes = require('./routes/signUpRoutes');
@@ -29,6 +30,7 @@ const deleteChatRoute = require('./routes/deleteChatRoute');
 const getAllUsersRoute = require('./routes/getAllUsersRoute');
 const groupRoute = require('./routes/groupRoute');
 const usersGroupsRoute = require('./routes/usersGroupsRoute');
+const adminRoute = require('./routes/adminRoute');
 
 //middleware use by the app
 app.use(express.static('public'));
@@ -43,6 +45,7 @@ app.use('/dltchat', deleteChatRoute);
 app.use('/getallusers', getAllUsersRoute);
 app.use('/group', groupRoute);
 app.use('/usersgroups', usersGroupsRoute);
+app.use('/admin', adminRoute);
 
 //foriegn key relation 
 
@@ -50,12 +53,22 @@ app.use('/usersgroups', usersGroupsRoute);
 User.hasMany(Msg, { foreignKey: 'senderId' });
 User.hasMany(Msg, { foreignKey: 'receiverId' });
 
-//user-group has many to many relationship
+//user-group has many to many relationship for members of the group 
 User.belongsToMany(Grp, { through: usersGroups });
 Grp.belongsToMany(User, { through: usersGroups });
 
 //group-message has one to many relationship
 Grp.hasMany(Msg, { foreignKey: 'groupId' });
+
+//group-user has one to many relationship for admin of the group 
+User.belongsToMany(Grp, {
+    through: Admin,
+    foreignKey: 'adminId'
+});
+Grp.belongsToMany(User, {
+    through: Admin,
+    foreignKey: 'groupId'
+});
 
 //server listing 
 (async () => {
