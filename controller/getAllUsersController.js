@@ -34,22 +34,77 @@ exports.getAllUsersControllerGetParam = async (req, res) => {
         res.status(500).json({ message: err, success: false });
     }
 };
-// exports.getAllUsersControllerGetParamOnlyUsersMatchedInGroupModel = async (req, res) => {
-//     try {
-//         const userId = req.params.allUsersfromThisGroup;
-//         const result = await User.findAll({
-//             attributes: [
-//                 'name'
-//             ],
-//             where: {
-//                 id: {
-//                     [Sequelize.Op.not]: userId
-//                 }
-//             }
-//         });
-//         res.status(200).json({ result, success: true });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ message: err, success: false });
-//     }
-// };
+exports.getAllUsersControllerGetParamOnlyUserName = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const loggedInUserId = req.user.id;
+        const result = await User.findAll({
+            attributes: [
+                'id',
+                'name'
+            ],
+            where: {
+                id: userId
+            }
+        });
+        res.status(200).json({ result, loggedInUserId, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};
+exports.getAllUsersControllerGetParamByMobile = async (req, res) => {
+    try {
+        const mobile = req.params.mobile;
+        const result = await User.findAll({
+            attributes: [
+                'id',
+                'name'
+            ],
+            where: {
+                mobile
+            }
+        });
+        res.status(200).json({ result, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};
+exports.getAllUsersControllerGetParamByName = async (req, res) => {
+    try {
+        const name = req.params.name;
+        const result = await User.findAll({
+            attributes: [
+                'id',
+                'name'
+            ],
+            where: {
+                name
+            }
+        });
+        res.status(200).json({ result, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};
+
+exports.getAllUsersControllerGetParamByEmail = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const result = await User.findAll({
+            attributes: [
+                'id',
+                'name'
+            ],
+            where: {
+                email
+            }
+        });
+        res.status(200).json({ result, success: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: err, success: false });
+    }
+};

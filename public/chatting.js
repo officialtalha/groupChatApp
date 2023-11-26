@@ -134,7 +134,7 @@ clearChatBtn.addEventListener('click', async (e) => {
             const p1 = document.createElement('p');
             p1.id = allUsers[y].id;
             p1.className = 'clickablePara';
-            p1.appendChild(document.createTextNode(`${allUsers[y].name}`));
+            p1.appendChild(document.createTextNode(`👶 ${allUsers[y].name}`));
             leftPanelBody.appendChild(p1);
         }
         //clickable event users in the side panel
@@ -177,11 +177,11 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //removing selected group initially
                     selectedUser.innerText = '';
                     selectedGroup.innerText = '';
-                    selectedUser.appendChild(document.createTextNode(`${selectedRceiverName.data.result[0].name}`));
+                    selectedUser.appendChild(document.createTextNode(`👶 ${selectedRceiverName.data.result[0].name}`));
 
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
-                        const time = result.data.result[i].timestamp;
+                        const time = result.data.result[i].timeStamp;
                         const [hour, minute, sec] = time.split(':');
                         const hours = Number(hour);
                         const minutes = Number(minute);
@@ -218,7 +218,7 @@ clearChatBtn.addEventListener('click', async (e) => {
             const p2 = document.createElement('p');
             p2.id = allGroups[z].id;
             p2.className = 'clickableGroup';
-            p2.appendChild(document.createTextNode(`Group-${allGroups[z].groupName}`));
+            p2.appendChild(document.createTextNode(`👩‍👨‍👧‍👦 ${allGroups[z].groupName}`));
             groupSection.appendChild(p2);
         }
 
@@ -294,16 +294,19 @@ clearChatBtn.addEventListener('click', async (e) => {
                             console.log(err);
                         }
                     };
+
                     // const hasStyleAttribute = grpActionBtn.getAttribute("style");
                     // if (!grpActionBtn.hasAttribute("style")) {
                     //     changeNameBtnDiv.className = 'changeNameBtnDiv1';
                     //     inviteBtnDiv.className = 'inviteBtnDiv1';
                     // }
+
                     //removing selected group and user initially
                     selectedUser.innerText = '';
                     selectedGroup.innerText = '';
+
                     //adding group name at the top when user click on the group name 
-                    selectedGroup.appendChild(document.createTextNode(`${selectedGroupName.data.result.groupName}`));
+                    selectedGroup.appendChild(document.createTextNode(`👩‍👨‍👧‍👦 ${selectedGroupName.data.result.groupName}`));
 
                     //this var is only for distinguish between two get routes in the BE
                     const forGroup = 1;

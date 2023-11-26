@@ -1,0 +1,328 @@
+        .chatBody {
+            width: 613px;
+            height: 510px;
+            margin-left: 272px;
+            margin-top: -573px;
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            padding: 30px;
+            background-color: white;
+        }
+
+        .welcoming {
+            margin-top: 1px;
+            margin-left: 1px;
+        }
+
+        .leftPanel {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            width: 187px;
+            height: 511px;
+            margin-left: 10px;
+            margin-top: -31px;
+            padding: 30px;
+        }
+
+        .leftPanel h2 {
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .leftPanel hr {
+            margin-top: -19px;
+        }
+
+        .leftPanelBody {
+            /* border: 2px solid black; */
+            width: 213px;
+            height: 473px;
+            overflow-y: auto;
+        }
+
+        .leftPanelBody p {
+            font-size: 16px;
+            color: white;
+            font-family: 'Marhey', sans-serif;
+            margin-left: 4px;
+            margin-top: 10px;
+            background-color: rgba(143, 139, 232, 255);
+            border-radius: 10px;
+            width: 162px;
+            padding-left: 15px;
+            cursor: pointer;
+        }
+
+        #brandingImg {
+            /* border: 2px solid black; */
+            width: 10%;
+            margin-left: 33%;
+            margin-top: -23px;
+        }
+
+        #brandingText {
+            font-family: 'Marhey', sans-serif;
+            margin: auto;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 13%;
+            /* border: 2px solid brown; */
+            margin-top: -46px;
+        }
+
+        .txtMsg {
+            /* border: 2px solid green; */
+            padding: 5px;
+            /* background-color: rgb(193, 248, 193); */
+            margin-top: 7px;
+        }
+
+        .txtMsg input {
+            width: 87%;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: rgb(222, 208, 247);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 11px;
+        }
+
+        .button {
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+            width: 56px;
+        }
+
+        .welcoming {
+            margin-top: 7px;
+            padding: 5px;
+            /* border: 2px solid rgb(140, 140, 21); */
+            /* background-color: rgb(232, 225, 245); */
+            height: 408px;
+            border-radius: 8px;
+        }
+
+        #emo1 {
+            font-size: 46px;
+            margin-top: 12px;
+            margin-left: 93px;
+        }
+
+        #emo2 {
+            font-size: 46px;
+            margin-top: -108px;
+            margin-left: 391px;
+        }
+
+        #p1 {
+            font-size: 70px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -128px;
+            margin-left: 162px;
+        }
+
+        #p-name {
+            font-size: 45px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -166px;
+            margin-left: 268px;
+        }
+
+        #p2 {
+            font-size: 35px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: -38px;
+            margin-left: 15px;
+            width: 564px;
+        }
+
+        .chat-msg {
+
+            margin-top: 7px;
+            padding: 5px;
+            /* border: 2px solid rgb(140, 140, 21); */
+            /* background-color: rgb(232, 225, 245); */
+            height: 408px;
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+
+        .chat-msg p {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+            border-radius: 5px;
+            padding-left: 5px;
+            margin-top: 2px;
+            /* border: 2px solid black; */
+        }
+
+        hr {
+            border-color: rgba(143, 139, 232, 255);
+        }
+
+        .actionBtn {
+            /* border: 2px soli d black; */
+            width: 267px;
+            margin-top: 1px;
+            margin-left: 996px;
+            padding: 1px;
+        }
+
+        #createGroupBtn {
+            width: 95px;
+            cursor: pointer;
+        }
+
+        #createGroupBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        #clearChatBtn {
+            width: 81px;
+            margin-left: 1px;
+            cursor: pointer;
+        }
+
+        #clearChatBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        #logoutBtn {
+            margin-top: 1px;
+            margin-left: 1px;
+            cursor: pointer;
+        }
+
+        #logoutBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .grpActionBtnClass {
+            width: 99px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+        }
+
+        .grpActionBtnClass:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .grpActionBtnDiv {
+            width: 100px;
+            /* border: 2px solid black; */
+            margin-left: 997px;
+            margin-top: -540px;
+        }
+
+        #selectedUser {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            /* border: 2px solid brown; */
+        }
+
+        #selectedUserDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: 1px;
+            margin-left: 314px;
+            /* border: 2px solid black; */
+        }
+
+        #selectedGroup {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            /* border: 2px solid brown; */
+        }
+
+        #selectedGroupDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: -103px;
+            margin-left: 314px;
+            /* border: 2px solid black; */
+        }
+
+        .changeNameBtnDiv {
+            margin-left: 1100px;
+            margin-top: -65px;
+        }
+
+        #changeNameBtn {
+            width: 103px;
+            cursor: pointer;
+        }
+
+        #changeNameBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .inviteBtnDiv {
+            margin-left: 998px;
+            margin-top: 4px;
+        }
+
+        #inviteBtn {
+            cursor: pointer;
+        }
+
+        #inviteBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .changeNameBtnDiv1 {
+            margin-left: 1060px;
+            margin-top: -36px;
+        }
+
+        .inviteBtnDiv1 {
+            margin-left: 998px;
+            margin-top: -30px;
+        }
+
+        .disabledBtn {
+            border-radius: 5px;
+            background-color: silver;
+            color: grey;
+            font-weight: bold;
+            border-width: 1px;
+            border-color: silver;
+            height: 30px;
+            width: 99px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(transparent, rgba(143, 139, 232, 255));
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(transparent, rgb(83, 76, 225));
+            border-radius: 20px;
+        }

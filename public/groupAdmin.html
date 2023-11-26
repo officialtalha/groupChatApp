@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://predyktable.ai/wp-content/uploads/2023/06/Phone-icon-150x150.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marhey:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/groupAdmin.css">
+    <title>T-Chat</title>
+</head>
+
+<body>
+    <div class="actionBtn">
+        <button type="button" class="button" id="backBtn">back</button>
+        <button type="button" class="button" id="logoutBtn">Logout</button>
+    </div>
+    <!-- left panel code -->
+    <div class="leftPanel">
+        <h2 id="welcome-user">Actions</h2>
+        <hr>
+        <div class="leftPanelBody" id="left-panel-body">
+            <div class="groupSection" id="groupSection">
+                <p id="addMembers">✔ Add Members</p>
+                <p id="removeMembers">✔ Remove Members</p>
+                <p id="makeAdmin">✔ Make Admin</p>
+                <p id="deleteGroup">✔ Delete Group</p>
+            </div>
+        </div>
+    </div>
+    <!-- chat body code -->
+    <div class="chatBody">
+        <img src="wassup.png" alt="logo" id="brandingImg">
+        <h2 id="brandingText">Group Administrator</h2>
+        <hr id="chatBodyHr">
+        <div class="whenRefresh" id="whenRefresh">
+            <!-- welcoming default -->
+            <div class="welcoming" id="welcomingDiv">
+                <p id="p2">Only Group Admin Can Access This Panel.</p>
+                <p id="p2">please select any action.</p>
+            </div>
+            <!-- welcoming default -->
+
+            <!-- add member -->
+            <div class="addMembersClass" id="addMembersDiv" style="display: none;">
+                <h2 class="addMembersTopTxt">Add Members</h2>
+                <form id="addMembersFrom">
+                    <label for="addMembersSerchBar" id="addMembersSerchBarLabel">Search Members: </label>
+                    <input type="text" name="name" id="addMembersSerchBar" placeholder="search by name, email, mobile">
+                    <button type="submit" class="button" id="addMembersBtn">Add</button>
+                </form>
+                <h4 id="messageHeadingForAddUser"></h4>
+                <h4 id="messageHeadingForAddUserAddBtn"></h4>
+            </div>
+            <!-- add member -->
+
+            <!-- remove member -->
+            <div class="removeMembersClass" id="removeMembersDiv" style="display: none;">
+                <h2 class="removeMembersTopTxt">Remove Members</h2>
+                <form id="removeMembersForm" method="post">
+                    <label id="addMembersSerchBarLabel">Choose Members: </label><br><br>
+                    <div class="members" id="removeMembersInnerDiv">
+                    </div>
+                    <button type="submit" class="button" id="removeBtn">remove</button>
+                </form>
+                <h4 id="messageHeadingForRemoveUser"></h4>
+            </div>
+            <!-- remove member -->
+
+            <!-- make admin member -->
+            <div class="makeAdminClass" id="makeAdminDiv" style="display: none;">
+                <h2 class="makeAdminTopTxt">Make Admin</h2>
+                <form id="makeAdminForm" method="post">
+                    <label id="addMembersSerchBarLabel">Choose Members: </label><br><br>
+                    <div class="members" id="makeAdminInnerDiv">
+                    </div>
+                    <button type="submit" class="button" id="removeBtn">Done</button>
+                </form>
+                <h4 id="messageHeadingForMakeAdmin"></h4>
+            </div>
+            <!-- make admin member -->
+
+            <!-- delete group  -->
+            <div class="deleteGroupClass" id="deleteGroupDiv" style="display: none;">
+                <p id="deleteGroupP">This Group Will Permanently Be Deleted After Click On The Button Below.</p>
+                <button class="button" id="deleteGrpBtn">Delete</button>
+                <br>
+                <h4 id="messageHeadingForDeleteGroup"></h4>
+            </div>
+            <!-- delete group  -->
+        </div>
+
+    </div>
+    <div id="groupNameTopTxtDiv">
+        <h3 id="groupNameTopTxt"></h3>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="groupAdmin.js"></script>
+</body>
+
+</html>

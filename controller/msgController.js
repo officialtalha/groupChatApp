@@ -38,7 +38,7 @@ exports.msgControllerPost = async (req, res) => {
             receiverId: recieverId,
             receiverName: receiverName.name,
             messageContent: message,
-            timestamp: time
+            timeStamp: time
         });
 
         res.status(200).json({ result, success: true });

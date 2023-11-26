@@ -31,6 +31,7 @@ const getAllUsersRoute = require('./routes/getAllUsersRoute');
 const groupRoute = require('./routes/groupRoute');
 const usersGroupsRoute = require('./routes/usersGroupsRoute');
 const adminRoute = require('./routes/adminRoute');
+const deletegroupRoute = require('./routes/deletegroupRoute');
 
 //middleware use by the app
 app.use(express.static('public'));
@@ -46,6 +47,7 @@ app.use('/getallusers', getAllUsersRoute);
 app.use('/group', groupRoute);
 app.use('/usersgroups', usersGroupsRoute);
 app.use('/admin', adminRoute);
+app.use('/deletegroup', deletegroupRoute);
 
 //foriegn key relation 
 

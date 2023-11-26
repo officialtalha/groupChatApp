@@ -1,0 +1,117 @@
+        .mainContainer {
+            width: 548px;
+            height: 214px;
+            margin: auto;
+            margin-top: 75px;
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            padding: 30px;
+            background-color: white;
+        }
+
+        #loginTxt {
+            /* border: 2px solid black; */
+            font-family: 'Marhey', sans-serif;
+            width: 16%;
+            margin: auto;
+            color: rgba(143, 139, 232, 255);
+        }
+
+        #brandingImg {
+            /* border: 2px solid black; */
+            width: 10%;
+            margin-left: 33%;
+            margin-top: -23px;
+        }
+
+        #brandingText {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 238px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 90px;
+            /* border: 2px solid brown; */
+            margin-top: -42px;
+        }
+
+        hr {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-color: rgba(143, 139, 232, 255);
+        }
+
+        label {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            font-size: large;
+        }
+
+        .textBoxContainer {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            border-radius: 5px;
+            padding: 20px;
+            width: 508px;
+            margin-top: -29px;
+        }
+
+        .textBoxContainer input {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            width: 220px;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: rgb(222, 208, 247);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 11px;
+        }
+
+        .button {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+            width: 56px;
+        }
+
+        .buttonsContainer {
+            /* border: 2px solid black; */
+            width: 300px;
+            padding-left: 156px;
+        }
+
+        #labelEmail {
+            margin-left: 207px;
+        }
+
+        #email {
+            margin-left: 27px;
+        }
+
+        #labelPass {
+            margin-left: 207px;
+        }
+
+        #pass {
+            margin-left: 27px;
+        }
+
+        #signup {
+            padding: 1px;
+        }
+
+        #clear {
+            margin-left: 8px;
+        }
+
+        #loginBtn {
+            margin-left: 8px;
+        }
+
+        .warningTxt {
+            /* border: 2px solid black; */
+            margin-left: 345px;
+        }

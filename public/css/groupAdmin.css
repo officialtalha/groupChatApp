@@ -1,0 +1,299 @@
+        .chatBody {
+            width: 613px;
+            height: 510px;
+            margin-left: 272px;
+            margin-top: -573px;
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            padding: 30px;
+            background-color: white;
+        }
+
+        .leftPanel {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            width: 187px;
+            height: 511px;
+            margin-left: 10px;
+            margin-top: -31px;
+            padding: 30px;
+        }
+
+        .leftPanel h2 {
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .leftPanel hr {
+            margin-top: -19px;
+        }
+
+        .leftPanelBody {
+            /* border: 2px solid black; */
+            width: 213px;
+            height: 473px;
+            overflow-y: auto;
+        }
+
+        .leftPanelBody p {
+            font-size: 16px;
+            color: white;
+            font-family: 'Marhey', sans-serif;
+            margin-left: 4px;
+            margin-top: 10px;
+            background-color: rgba(143, 139, 232, 255);
+            border-radius: 10px;
+            width: 175px;
+            padding-left: 15px;
+            cursor: pointer;
+        }
+
+        #brandingImg {
+            /* border: 2px solid black; */
+            width: 10%;
+            margin-left: 161px;
+            margin-top: -16px;
+        }
+
+        #brandingText {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 227px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 237px;
+            /* border: 2px solid brown; */
+            margin-top: -42px;
+        }
+
+        .button {
+            border-radius: 5px;
+            background-color: white;
+            color: rgba(143, 139, 232, 255);
+            font-weight: bold;
+            border-width: 1px;
+            border-color: rgba(143, 139, 232, 255);
+            height: 30px;
+            width: 56px;
+        }
+
+        .welcoming {
+            margin-top: 7px;
+            padding: 5px;
+            /* border: 2px solid rgb(140, 140, 21); */
+            /* background-color: rgb(232, 225, 245); */
+            height: 408px;
+            border-radius: 8px;
+        }
+
+        #p2 {
+            font-size: 20px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: 4px;
+            margin-left: 15px;
+            width: 564px;
+        }
+
+        #deleteGroupP {
+            font-size: 20px;
+            color: rgba(143, 139, 232, 255);
+            font-family: 'Marhey', sans-serif;
+            margin-top: 21px;
+            margin-left: 15px;
+            width: 564px;
+        }
+
+        hr {
+            border-color: rgba(143, 139, 232, 255);
+        }
+
+        .actionBtn {
+            /* border: 2px soli d black; */
+            width: 267px;
+            margin-top: 1px;
+            margin-left: 996px;
+            padding: 1px;
+        }
+
+        #backBtn {
+            width: 57px;
+            margin-left: 142px;
+            cursor: pointer;
+        }
+
+        #backBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        #logoutBtn {
+            margin-top: 1px;
+            margin-left: 1px;
+            cursor: pointer;
+        }
+
+        #logoutBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        #selectedGroup {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            /* border: 2px solid brown; */
+        }
+
+        #selectedGroupDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: -103px;
+            margin-left: 314px;
+            /* border: 2px solid black; */
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(transparent, rgba(143, 139, 232, 255));
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(transparent, rgb(83, 76, 225));
+            border-radius: 20px;
+        }
+
+        #addMembersSerchBarLabel {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            width: 117px;
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            font-size: large;
+            margin-top: 1px;
+        }
+
+        #addMembersSerchBar {
+            width: 460px;
+            border-radius: 5px;
+            border-width: 2px;
+            border-color: rgb(222, 208, 247);
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 11px;
+            margin-top: 2px;
+        }
+
+        #addMembersBtn {
+            width: 90px;
+            height: 26px;
+            cursor: pointer;
+        }
+
+        #addMembersBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+        }
+
+        .addMembersClass {
+            margin-top: 19px;
+        }
+
+        .addMembersTopTxt {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 153px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 237px;
+            /* border: 2px solid brown; */
+            margin-top: 20px;
+        }
+
+        .removeMembersTopTxt {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 173px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 237px;
+            /* border: 2px solid brown; */
+            margin-top: 20px;
+        }
+
+        .makeAdminTopTxt {
+            font-family: 'Marhey', sans-serif;
+            margin-left: 145px;
+            text-align: center;
+            color: rgba(143, 139, 232, 255);
+            width: 237px;
+            /* border: 2px solid brown; */
+            margin-top: 20px;
+        }
+
+        .members {
+            border: 2px solid rgba(143, 139, 232, 255);
+            border-radius: 15px;
+            width: 175px;
+            height: 142px;
+            margin-left: 160px;
+            margin-top: -40px;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #removeBtn {
+            margin-left: 163px;
+            margin-top: 17px;
+            width: 191px;
+        }
+
+        #removeBtn:hover {
+            cursor: pointer;
+            color: white;
+            background-color: rgba(143, 139, 232, 255);
+        }
+
+        #deleteGrpBtn {
+            margin-left: 14px;
+            margin-top: 0px;
+            width: 100px;
+        }
+
+        #deleteGrpBtn:hover {
+            cursor: pointer;
+            color: white;
+            background-color: rgba(143, 139, 232, 255);
+        }
+
+        #messageHeadingForDeleteGroup {
+            margin-left: 13px;
+            margin-top: 21px;
+        }
+
+        #groupNameTopTxtDiv {
+            width: 200px;
+            height: 50px;
+            margin-top: -542px;
+            margin-left: 307px;
+        }
+
+        #groupNameTopTxt {
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+        }
+
+        #label2 {
+            /* border: 2px solid rgba(143, 139, 232, 255); */
+            width: 117px;
+            font-family: 'Marhey', sans-serif;
+            color: rgba(143, 139, 232, 255);
+            font-size: large;
+            margin-top: 1px;
+        }
+
+        #chatBodyHr {
+            margin-top: -20px;
+        }
