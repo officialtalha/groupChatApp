@@ -15,7 +15,7 @@ cancelBtn.addEventListener('click', async (e) => {
 //when page refresh 
 (async () => {
     try {
-        const result = await axios.get(`http://localhost:3000/getallusers`, {
+        const result = await axios.get(`http://65.1.130.212:3000/getallusers`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -56,18 +56,18 @@ cancelBtn.addEventListener('click', async (e) => {
                     groupName
                 }
                 //for creating group in group model
-                const result = await axios.post(`http://localhost:3000/group`, obj);
+                const result = await axios.post(`http://65.1.130.212:3000/group`, obj);
                 const GroupId = result.data.groupId;
 
                 //for creating entry in users-groups model after getting newly created group id
                 //this call for loggenin user to become part of the group 
-                await axios.post(`http://localhost:3000/usersgroups`, {
+                await axios.post(`http://65.1.130.212:3000/usersgroups`, {
                     userId: loggedInUserId,
                     GroupId
                 });
 
                 //making logged in user the admin of the group 
-                await axios.post(`http://localhost:3000/admin`, {
+                await axios.post(`http://65.1.130.212:3000/admin`, {
                     adminId: loggedInUserId,
                     groupId: GroupId
                 });
@@ -82,7 +82,7 @@ cancelBtn.addEventListener('click', async (e) => {
                                 userId,
                                 GroupId
                             };
-                            const result = await axios.post(`http://localhost:3000/usersgroups`, obj1);
+                            const result = await axios.post(`http://65.1.130.212:3000/usersgroups`, obj1);
                         }
                     } catch (err) {
                         console.log(err);

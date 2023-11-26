@@ -36,7 +36,7 @@ const deletegroupRoute = require('./routes/deletegroupRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://65.1.130.212:3000'
 }));
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
@@ -78,7 +78,7 @@ Grp.belongsToMany(User, {
         await sequelize.sync();
         app.listen(PORT, (err) => {
             if (!err) {
-                console.log(`server is running on http://localhost:${PORT}`);
+                console.log(`server is running on http://65.1.130.212:${PORT}`);
             } else {
                 console.log(err);
             }

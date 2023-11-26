@@ -20,7 +20,7 @@ cancelBtn.addEventListener('click', async (e) => {
         const allUsersfromThisGroupEndpoint = 1;
 
         //getting all the users from this group 
-        const allUsersfromThisGroup = await axios.get(`http://localhost:3000/group/${allUsersfromThisGroupEndpoint}/${groupId}`, {
+        const allUsersfromThisGroup = await axios.get(`http://65.1.130.212:3000/group/${allUsersfromThisGroupEndpoint}/${groupId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -28,7 +28,7 @@ cancelBtn.addEventListener('click', async (e) => {
         });
 
         //getting all the users from user model
-        const allUsersFromUserModel = await axios.get(`http://localhost:3000/getallusers/`, {
+        const allUsersFromUserModel = await axios.get(`http://65.1.130.212:3000/getallusers/`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -83,7 +83,7 @@ cancelBtn.addEventListener('click', async (e) => {
                                 userId,
                                 GroupId: groupId
                             };
-                            resultForSuccessMessage = await axios.post(`http://localhost:3000/usersgroups`, obj1);
+                            resultForSuccessMessage = await axios.post(`http://65.1.130.212:3000/usersgroups`, obj1);
                         }
                     } catch (err) {
                         console.log(err);
