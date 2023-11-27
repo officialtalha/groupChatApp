@@ -1,3 +1,4 @@
+const logger = require('../middleware/logger');
 const Grp = require('../models/groupModel');
 const usersGroups = require('../models/usersGroupsModel');
 const Sequelise = require('sequelize');
@@ -9,7 +10,7 @@ exports.groupControllerPostForCreatingGroup = async (req, res) => {
         const GroupId = await Grp.create({ groupName });
         res.status(200).json({ groupId: GroupId.id, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -27,7 +28,7 @@ exports.groupControllerPutForChangeName = async (req, res) => {
             });
         res.status(200).json({ success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -57,7 +58,7 @@ exports.groupControllerGet = async (req, res) => {
         }
         res.status(200).json({ arr, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -72,7 +73,7 @@ exports.groupControllerGetParam = async (req, res) => {
         });
         res.status(200).json({ result, loggedInUserId, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -90,7 +91,7 @@ exports.groupControllerGetParamAllUsersfromThisGroup = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };

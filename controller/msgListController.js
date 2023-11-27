@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize');
 const Msg = require('../models/msgModel');
-const User = require('../models/userModel');
+const logger = require('../middleware/logger');
 exports.msgListControllerGet = async (req, res) => {
     try {
         const loggedInUserId = req.user.id;
-        const loggedInUserName = req.user.name;
         let recieverId = req.params.recieverId;
 
         const result = await Msg.findAll({
@@ -18,14 +17,12 @@ exports.msgListControllerGet = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
 exports.msgListControllerGetForGroup = async (req, res) => {
     try {
-        const loggedInUserId = req.user.id;
-        const loggedInUserName = req.user.name;
         let groupId = req.params.groupId;
 
         const result = await Msg.findAll({
@@ -36,7 +33,7 @@ exports.msgListControllerGetForGroup = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };

@@ -16,7 +16,7 @@ changeBtn.addEventListener('submit', async (e) => {
             groupName: textBox,
             id: groupId
         }
-        const result = await axios.put(`http://65.1.130.212:3000/group`, obj);
+        const result = await axios.put(`http://localhost:3000/group`, obj);
         // console.log();
         if (result.data.success) {
             successMessage.innerText = 'Group Name Has Changed Successfully!!!';

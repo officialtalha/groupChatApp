@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
+const logger = require('../middleware/logger');
 exports.signUpPost = async (req, res) => {
     try {
         const { name, email, mobile, password } = req.body;
@@ -20,6 +21,6 @@ exports.signUpPost = async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({ message: err, success: false });
-        console.log(err);
+        logger.error(err);
     }
 };

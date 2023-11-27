@@ -35,7 +35,7 @@ logoutBtn.addEventListener('click', (e) => {
 (async () => {
     try {
         //getting selected group name 
-        const selectedGroupName = await axios.get(`http://65.1.130.212:3000/group/${groupId}`, {
+        const selectedGroupName = await axios.get(`http://localhost:3000/group/${groupId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -74,7 +74,7 @@ addMembers.addEventListener('click', async (e) => {
         //matching for mobile
         if (regExMobile.test(addMembersSerchBarValue)) {
             const mobile = parseInt(addMembersSerchBarValue);
-            const isAvailable = await axios.get(`http://65.1.130.212:3000/getallusers/1/2/3`, {
+            const isAvailable = await axios.get(`http://localhost:3000/getallusers/1/2/3`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
@@ -96,7 +96,7 @@ addMembers.addEventListener('click', async (e) => {
         if (regExName.test(addMembersSerchBarValue)) {
 
             const name = addMembersSerchBarValue;
-            const isAvailable = await axios.get(`http://65.1.130.212:3000/getallusers/1/2/3/${name}`, {
+            const isAvailable = await axios.get(`http://localhost:3000/getallusers/1/2/3/${name}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
@@ -118,7 +118,7 @@ addMembers.addEventListener('click', async (e) => {
         if (regExEmail.test(addMembersSerchBarValue)) {
 
             const email = addMembersSerchBarValue;
-            const isAvailable = await axios.get(`http://65.1.130.212:3000/getallusers/1/2/3/4/${email}`, {
+            const isAvailable = await axios.get(`http://localhost:3000/getallusers/1/2/3/4/${email}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
@@ -146,7 +146,7 @@ addMembers.addEventListener('click', async (e) => {
                 userId: userIdToAdd,
                 GroupId: groupId
             }
-            const result = await axios.post(`http://65.1.130.212:3000/usersgroups`, obj);
+            const result = await axios.post(`http://localhost:3000/usersgroups`, obj);
             if (result.data.success) {
                 messageHeadingForAddUserAddBtn.innerText = 'User Has been Added Successfully!!!';
                 messageHeadingForAddUserAddBtn.style.color = 'rgba(143, 139, 232, 255)';
@@ -177,13 +177,13 @@ removeMembers.addEventListener('click', async (e) => {
         //first empty div
         removeMembersInnerDiv.innerHTML = '';
         //getting all users id which are the memners of this group 
-        const result = await axios.get(`http://65.1.130.212:3000/usersgroups/${groupId}`);
+        const result = await axios.get(`http://localhost:3000/usersgroups/${groupId}`);
         // console.log(result.data.result);
 
         //getting all the users name 
         for (let x = 0; x < result.data.result.length; x++) {
             const onlyUserName = 1;
-            const usersNames = await axios.get(`http://65.1.130.212:3000/getallusers/${onlyUserName}/${result.data.result[x].userId}`, {
+            const usersNames = await axios.get(`http://localhost:3000/getallusers/${onlyUserName}/${result.data.result[x].userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
@@ -228,7 +228,7 @@ removeMembers.addEventListener('click', async (e) => {
                                 GroupId: groupId
                             };
                             const removeUsers = 1;
-                            await axios.post(`http://65.1.130.212:3000/usersgroups/${removeUsers}`, obj1);
+                            await axios.post(`http://localhost:3000/usersgroups/${removeUsers}`, obj1);
                         }
                     } catch (err) {
                         console.log(err);
@@ -267,13 +267,13 @@ makeAdmin.addEventListener('click', async (e) => {
         makeAdminInnerDiv.innerHTML = '';
 
         //getting all users id which are the memners of this group 
-        const result = await axios.get(`http://65.1.130.212:3000/usersgroups/${groupId}`);
+        const result = await axios.get(`http://localhost:3000/usersgroups/${groupId}`);
         // console.log(result.data.result);
 
         //getting all the users name 
         for (let x = 0; x < result.data.result.length; x++) {
             const onlyUserName = 1;
-            const usersNames = await axios.get(`http://65.1.130.212:3000/getallusers/${onlyUserName}/${result.data.result[x].userId}`, {
+            const usersNames = await axios.get(`http://localhost:3000/getallusers/${onlyUserName}/${result.data.result[x].userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
@@ -316,7 +316,7 @@ makeAdmin.addEventListener('click', async (e) => {
                                 adminId: userId,
                                 groupId
                             };
-                            await axios.post(`http://65.1.130.212:3000/admin`, obj1);
+                            await axios.post(`http://localhost:3000/admin`, obj1);
                         }
                     } catch (err) {
                         console.log(err);
@@ -357,7 +357,7 @@ deleteGroup.addEventListener('click', async (e) => {
             try {
                 const flag = confirm('Are You sure want to delete this group?');
                 if (flag) {
-                    await axios.delete(`http://65.1.130.212:3000/deletegroup/${groupId}`);
+                    await axios.delete(`http://localhost:3000/deletegroup/${groupId}`);
                     messageHeadingForDeleteGroup.innerText = 'Group Deleted successfully.';
                     messageHeadingForDeleteGroup.style.color = 'red';
                     setTimeout(() => {

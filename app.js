@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const Sequelise = require('sequelize');
 const sequelize = require('./util/database');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const logger = require('./middleware/logger');
 
 const app = express();
 
@@ -36,8 +39,10 @@ const deletegroupRoute = require('./routes/deletegroupRoute');
 //middleware use by the app
 app.use(express.static('public'));
 app.use(cors({
-    origin: 'http://65.1.130.212:3000'
+    origin: 'http://localhost:3000'
 }));
+app.use(morgan('combined'));
+app.use(helmet());
 app.use('/signup', signUpRoutes);
 app.use('/login', loginRoutes);
 app.use('/msg', msgRoutes);
@@ -78,12 +83,12 @@ Grp.belongsToMany(User, {
         await sequelize.sync();
         app.listen(PORT, (err) => {
             if (!err) {
-                console.log(`server is running on http://65.1.130.212:${PORT}`);
+                logger.info(`server is running on http://localhost:${PORT}`);
             } else {
-                console.log(err);
+                logger.error(err);
             }
         });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
     }
 })();

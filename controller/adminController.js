@@ -1,12 +1,12 @@
 const Admin = require('../models/adminModel');
-
+const logger = require('../middleware/logger');
 exports.adminControllerPost = async (req, res) => {
     try {
         const { adminId, groupId } = req.body;
         await Admin.create({ adminId, groupId });
         res.status(200).json({ success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -26,7 +26,7 @@ exports.adminControllerGet = async (req, res) => {
             res.status(200).json({ message: 'admin', success: true });
         }
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };

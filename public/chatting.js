@@ -57,7 +57,7 @@ chatForm.addEventListener('submit', async (e) => {
             document.getElementById('msgText').value = null;
             //this var is only for distinguigsh between two post routes in the BE
             const forGroup = 1;
-            const result = await axios.post(`http://65.1.130.212:3000/msg/${forGroup}`, obj, {
+            const result = await axios.post(`http://localhost:3000/msg/${forGroup}`, obj, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token,
@@ -73,7 +73,7 @@ chatForm.addEventListener('submit', async (e) => {
                 recieverId
             };
             document.getElementById('msgText').value = null;
-            const result = await axios.post(`http://65.1.130.212:3000/msg`, obj);
+            const result = await axios.post(`http://localhost:3000/msg`, obj);
         }
 
     } catch (err) {
@@ -87,7 +87,7 @@ clearChatBtn.addEventListener('click', async (e) => {
     try {
         const flag = confirm('are sure want to delete all the chats?')
         if (flag) {
-            await axios.delete(`http://65.1.130.212:3000/dltchat`, {
+            await axios.delete(`http://localhost:3000/dltchat`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token,
@@ -107,7 +107,7 @@ clearChatBtn.addEventListener('click', async (e) => {
         localStorage.setItem('isGroup', 0);
 
         //getting all the users from the User table
-        const result = await axios.get(`http://65.1.130.212:3000/getallusers`, {
+        const result = await axios.get(`http://localhost:3000/getallusers`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -159,7 +159,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     recieverId = contactUser.id;
 
                     //getting messages
-                    const result = await axios.get(`http://65.1.130.212:3000/msglist/${recieverId}`, {
+                    const result = await axios.get(`http://localhost:3000/msglist/${recieverId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token,
@@ -167,7 +167,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     });
 
                     //getting selected user's name 
-                    const selectedRceiverName = await axios.get(`http://65.1.130.212:3000/getallusers/${recieverId}`, {
+                    const selectedRceiverName = await axios.get(`http://localhost:3000/getallusers/${recieverId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token,
@@ -204,7 +204,7 @@ clearChatBtn.addEventListener('click', async (e) => {
         });
 
         //getting all the groups from the group table for this perticular user
-        const groupResult = await axios.get(`http://65.1.130.212:3000/group`, {
+        const groupResult = await axios.get(`http://localhost:3000/group`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -261,7 +261,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     };
 
                     //getting selected group name 
-                    const selectedGroupName = await axios.get(`http://65.1.130.212:3000/group/${groupId}`, {
+                    const selectedGroupName = await axios.get(`http://localhost:3000/group/${groupId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token
@@ -274,7 +274,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     grpActionBtn.className = 'grpActionBtnClass';
 
                     // checking whether a user is admin or not 
-                    const isAdmin = await axios.get(`http://65.1.130.212:3000/admin/${groupId}`, {
+                    const isAdmin = await axios.get(`http://localhost:3000/admin/${groupId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token
@@ -310,7 +310,7 @@ clearChatBtn.addEventListener('click', async (e) => {
 
                     //this var is only for distinguish between two get routes in the BE
                     const forGroup = 1;
-                    const result = await axios.get(`http://65.1.130.212:3000/msglist/${forGroup}/${groupId}`, {
+                    const result = await axios.get(`http://localhost:3000/msglist/${forGroup}/${groupId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token,

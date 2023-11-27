@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const User = require('../models/userModel');
+const logger = require('../middleware/logger');
 
 exports.getAllUsersControllerGet = async (req, res) => {
     try {
@@ -13,7 +14,7 @@ exports.getAllUsersControllerGet = async (req, res) => {
         });
         res.status(200).json({ result, loggedInUserId, loggedInUserName, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -30,7 +31,7 @@ exports.getAllUsersControllerGetParam = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -49,7 +50,7 @@ exports.getAllUsersControllerGetParamOnlyUserName = async (req, res) => {
         });
         res.status(200).json({ result, loggedInUserId, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -67,7 +68,7 @@ exports.getAllUsersControllerGetParamByMobile = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -85,7 +86,7 @@ exports.getAllUsersControllerGetParamByName = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -104,7 +105,7 @@ exports.getAllUsersControllerGetParamByEmail = async (req, res) => {
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };

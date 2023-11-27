@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const Grp = require('../models/groupModel');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
+const logger = require('../middleware/logger');
 exports.msgControllerPost = async (req, res) => {
     try {
 
@@ -43,7 +44,7 @@ exports.msgControllerPost = async (req, res) => {
 
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
@@ -79,7 +80,7 @@ exports.msgControllerPostForGroup = async (req, res) => {
 
         res.status(200).json({ result, success: true });
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };

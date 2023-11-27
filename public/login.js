@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', async (e) => {
             username,
             password
         }
-        const result = await axios.post(`http://65.1.130.212:3000/login`, obj);
+        const result = await axios.post(`http://localhost:3000/login`, obj);
         console.log(result);
         const info = {
             token: result.data.token,

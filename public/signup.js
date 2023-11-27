@@ -16,7 +16,7 @@ signUpForm.addEventListener('submit', async (e) => {
             password
         };
 
-        const result = await axios.post(`http://65.1.130.212:3000/signup`, obj);
+        const result = await axios.post(`http://localhost:3000/signup`, obj);
         console.log(result);
         messageHeading.innerText = '';
         messageHeading.appendChild(document.createTextNode(result.data.message));

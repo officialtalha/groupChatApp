@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const logger = require('../middleware/logger');
 exports.loginControllerPost = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -21,7 +22,7 @@ exports.loginControllerPost = async (req, res) => {
             res.status(200).json({ message: 'User not found!', success: false });
         }
     } catch (err) {
-        console.log(err);
+        logger.error(err);
         res.status(500).json({ message: err, success: false });
     }
 };
