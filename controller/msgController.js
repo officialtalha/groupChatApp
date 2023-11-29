@@ -5,13 +5,13 @@ const Grp = require('../models/groupModel');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
 const logger = require('../middleware/logger');
+const { messageEmit, groupMessageEmit } = require('../socket/socket');
+
 exports.msgControllerPost = async (req, res) => {
     try {
-
         const { message, token, recieverId } = req.body;
         const decoded = jwt.verify(token, process.env.JWT_SecretKey);
         const senderId = decoded.id;
-
         //getting current time 
         let a = moment();
         let b = a.toString();
@@ -32,6 +32,9 @@ exports.msgControllerPost = async (req, res) => {
             }
         });
 
+        //checking whether message contains a text or image formData
+
+
         //creating entry in the Message model 
         const result = await Msg.create({
             senderId: senderId,
@@ -41,7 +44,7 @@ exports.msgControllerPost = async (req, res) => {
             messageContent: message,
             timeStamp: time
         });
-
+        messageEmit(result);
         res.status(200).json({ result, success: true });
     } catch (err) {
         logger.error(err);
@@ -77,7 +80,7 @@ exports.msgControllerPostForGroup = async (req, res) => {
             timeStamp: time,
             groupId
         });
-
+        groupMessageEmit(result);
         res.status(200).json({ result, success: true });
     } catch (err) {
         logger.error(err);

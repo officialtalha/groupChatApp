@@ -11,8 +11,12 @@ const sequelize = require('./util/database');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const logger = require('./middleware/logger');
+const http = require('http');
 
 const app = express();
+const server = http.createServer(app);
+const { init } = require('./socket/socket');
+const io = init(server);
 
 //setup port number
 const PORT = process.env.PORT || 3000;
@@ -35,6 +39,7 @@ const groupRoute = require('./routes/groupRoute');
 const usersGroupsRoute = require('./routes/usersGroupsRoute');
 const adminRoute = require('./routes/adminRoute');
 const deletegroupRoute = require('./routes/deletegroupRoute');
+const imgRoute = require('./routes/imgRoute');
 
 //middleware use by the app
 app.use(express.static('public'));
@@ -53,6 +58,7 @@ app.use('/group', groupRoute);
 app.use('/usersgroups', usersGroupsRoute);
 app.use('/admin', adminRoute);
 app.use('/deletegroup', deletegroupRoute);
+app.use('/img', imgRoute);
 
 //foriegn key relation 
 
@@ -81,7 +87,7 @@ Grp.belongsToMany(User, {
 (async () => {
     try {
         await sequelize.sync();
-        app.listen(PORT, (err) => {
+        server.listen(PORT, (err) => {
             if (!err) {
                 logger.info(`server is running on http://localhost:${PORT}`);
             } else {

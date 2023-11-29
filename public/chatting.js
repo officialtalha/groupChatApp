@@ -10,6 +10,7 @@ const createGroupBtn = document.getElementById('createGroupBtn');
 const groupSection = document.getElementById('groupSection');
 const grpActionBtn = document.getElementById('grpActionBtn');
 const changeNameBtn = document.getElementById('changeNameBtn');
+const msgImg = document.getElementById('msgImg');
 const inviteBtn = document.getElementById('inviteBtn');
 const changeNameBtnDiv = document.getElementById('changeNameBtnDiv');
 const inviteBtnDiv = document.getElementById('inviteBtnDiv');
@@ -19,7 +20,7 @@ const info = JSON.parse(localStorage.getItem("info"));
 const token = info.token;
 let recieverId;
 let groupId;
-
+const socket = io();
 //create group button to move creating group page
 createGroupBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -45,35 +46,60 @@ chatForm.addEventListener('submit', async (e) => {
     try {
         const isGroup = JSON.parse(localStorage.getItem('isGroup'));
         if (isGroup == 1) {
+
+
             //if user using group chat
             const groupId = JSON.parse(localStorage.getItem('groupId'));
             const message = document.getElementById('msgText').value;
 
-            const obj = {
-                message,
-                token,
-                groupId
-            };
-            document.getElementById('msgText').value = null;
-            //this var is only for distinguigsh between two post routes in the BE
-            const forGroup = 1;
-            const result = await axios.post(`http://localhost:3000/msg/${forGroup}`, obj, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token,
-                }
-            });
+            if (message != "") {
+                const obj = {
+                    message,
+                    token,
+                    groupId
+                };
+
+                document.getElementById('msgText').value = null;
+
+                const result = await axios.post(`http://localhost:3000/msg/1`, obj, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token,
+                    }
+                });
+            }
+
+            //for sending image 
+            const imageData = msgImg.files[0];
+            if (imageData != undefined) {
+                const formData = new FormData();
+                formData.append('image', imageData);
+                const result1 = await axios.post(`http://localhost:3000/img/1/${token}/${groupId}`, formData);
+            }
+
         } else {
             //if user using normal chat
             const message = document.getElementById('msgText').value;
+            if (message != "") {
+                const obj = {
+                    message,
+                    token,
+                    recieverId
+                };
 
-            const obj = {
-                message,
-                token,
-                recieverId
-            };
-            document.getElementById('msgText').value = null;
-            const result = await axios.post(`http://localhost:3000/msg`, obj);
+                document.getElementById('msgText').value = null;
+
+                const result = await axios.post(`http://localhost:3000/msg`, obj);
+            }
+
+            //for sending image 
+            const imageData = msgImg.files[0];
+            if (imageData != undefined) {
+                const formData = new FormData();
+                formData.append('image', imageData);
+                const result1 = await axios.post(`http://localhost:3000/img/${token}/${recieverId}`, formData);
+            }
+
         }
 
     } catch (err) {
@@ -149,6 +175,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //manage welcome in msg section
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
+                    msgImg.removeAttribute('style');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg';
 
@@ -181,6 +208,7 @@ clearChatBtn.addEventListener('click', async (e) => {
 
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
+                        //time setting
                         const time = result.data.result[i].timeStamp;
                         const [hour, minute, sec] = time.split(':');
                         const hours = Number(hour);
@@ -194,9 +222,72 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
-                        chatMsg.appendChild(p);
+                        const word = 'https';
+                        const messageContent = result.data.result[i].messageContent;
+                        if (messageContent.includes(word)) {
+                            const p1 = document.createElement('p');
+                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                            chatMsg.appendChild(p1);
+
+                            const imgDiv = document.createElement('div');
+                            imgDiv.className = 'imgDiv';
+                            const img = document.createElement('img');
+                            img.setAttribute('src', result.data.result[i].messageContent);
+                            img.className = 'chatImg';
+                            imgDiv.appendChild(img);
+                            chatMsg.appendChild(imgDiv);
+                        } else {
+                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                            chatMsg.appendChild(p);
+                        }
+
                     }
+                    socket.on('message-emit-to-client', (msg) => {
+                        const p = document.createElement('p');
+                        const time = msg.timeStamp;
+                        const [hour, minute, sec] = time.split(':');
+                        const hours = Number(hour);
+                        const minutes = Number(minute);
+                        let ampm;
+                        let hoursampm;
+                        if (hours > 12) {
+                            ampm = 'PM';
+                            hoursampm = hours % 12;
+                        } else {
+                            ampm = 'AM';
+                            hoursampm = hours;
+                        }
+                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                        chatMsg.appendChild(p);
+                    });
+
+                    socket.on('message-emit-to-clientImg', (msg) => {
+                        const p1 = document.createElement('p');
+                        const time = msg.timeStamp;
+                        const [hour, minute, sec] = time.split(':');
+                        const hours = Number(hour);
+                        const minutes = Number(minute);
+                        let ampm;
+                        let hoursampm;
+                        if (hours > 12) {
+                            ampm = 'PM';
+                            hoursampm = hours % 12;
+                        } else {
+                            ampm = 'AM';
+                            hoursampm = hours;
+                        }
+                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                        chatMsg.appendChild(p1);
+
+                        const imgDiv = document.createElement('div');
+                        imgDiv.className = 'imgDiv';
+                        const img = document.createElement('img');
+                        img.setAttribute('src', msg.messageContent);
+                        img.className = 'chatImg';
+                        imgDiv.appendChild(img);
+                        chatMsg.appendChild(imgDiv);
+                    });
+
                 } catch (err) {
                     console.log(err);
                 }
@@ -241,6 +332,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //manage welcome in msg section 
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
+                    msgImg.removeAttribute('style');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg'
 
@@ -333,9 +425,70 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
-                        chatMsg.appendChild(p);
+
+                        const word = 'https';
+                        const messageContent = result.data.result[i].messageContent;
+                        if (messageContent.includes(word)) {
+                            const p1 = document.createElement('p');
+                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                            chatMsg.appendChild(p1);
+
+                            const imgDiv = document.createElement('div');
+                            imgDiv.className = 'imgDiv';
+                            const img = document.createElement('img');
+                            img.setAttribute('src', result.data.result[i].messageContent);
+                            img.className = 'chatImg';
+                            imgDiv.appendChild(img);
+                            chatMsg.appendChild(imgDiv);
+                        } else {
+                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                            chatMsg.appendChild(p);
+                        }
                     }
+                    socket.on('message-emit-to-clientGroup', (msg) => {
+                        const p = document.createElement('p');
+                        const time = msg.timeStamp;
+                        const [hour, minute, sec] = time.split(':');
+                        const hours = Number(hour);
+                        const minutes = Number(minute);
+                        let ampm;
+                        let hoursampm;
+                        if (hours > 12) {
+                            ampm = 'PM';
+                            hoursampm = hours % 12;
+                        } else {
+                            ampm = 'AM';
+                            hoursampm = hours;
+                        }
+                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                        chatMsg.appendChild(p);
+                    });
+                    socket.on('message-emit-to-clientImgGroup', (msg) => {
+                        const p1 = document.createElement('p');
+                        const time = msg.timeStamp;
+                        const [hour, minute, sec] = time.split(':');
+                        const hours = Number(hour);
+                        const minutes = Number(minute);
+                        let ampm;
+                        let hoursampm;
+                        if (hours > 12) {
+                            ampm = 'PM';
+                            hoursampm = hours % 12;
+                        } else {
+                            ampm = 'AM';
+                            hoursampm = hours;
+                        }
+                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                        chatMsg.appendChild(p1);
+
+                        const imgDiv = document.createElement('div');
+                        imgDiv.className = 'imgDiv';
+                        const img = document.createElement('img');
+                        img.setAttribute('src', msg.messageContent);
+                        img.className = 'chatImg';
+                        imgDiv.appendChild(img);
+                        chatMsg.appendChild(imgDiv);
+                    });
                 } catch (err) {
                     console.log(err);
                 }

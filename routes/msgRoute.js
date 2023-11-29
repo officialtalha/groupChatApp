@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const msgController = require('../controller/msgController');
 router.use(bodyParser.json());
 
+
 router.post('/', msgController.msgControllerPost);
 router.post('/:forGroup', msgController.msgControllerPostForGroup);
 

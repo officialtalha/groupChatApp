@@ -326,3 +326,17 @@
             background: linear-gradient(transparent, rgb(83, 76, 225));
             border-radius: 20px;
         }
+
+        .imgDiv {
+            /* border: 2px solid black; */
+            width: 200px;
+            height: 200px;
+            margin-left: 1px;
+            margin-top: 1px;
+        }
+
+        .chatImg {
+            width: 100%;
+            margin-left: 1px;
+            margin-top: 1px;
+        }

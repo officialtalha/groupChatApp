@@ -42,7 +42,8 @@
         <hr>
         <div class="txtMsg">
             <form id="chat-form">
-                <input type="text" style="display: none;" name="msg" id="msgText" placeholder="Type here..." required>
+                <input type="text" style="display: none;" name="msg" id="msgText" placeholder="Type here...">
+                <input type="file" style="display: none;" name="img" id="msgImg">
                 <button type="submit" id="msgSendBtn" class="button" style="display: none;">send</button>
             </form>
         </div>
@@ -64,6 +65,7 @@
         <button type="button" class="button" id="inviteBtn" style="display: none;">Invite</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
     <script src="chatting.js"></script>
 </body>
 
