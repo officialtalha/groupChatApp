@@ -182,6 +182,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
                     attachmentIcon.removeAttribute('style');
+                    document.getElementById('attachmentIconDivId').setAttribute('class', 'attachmentIconDiv');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg';
 
@@ -214,11 +215,17 @@ clearChatBtn.addEventListener('click', async (e) => {
 
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
+                        // getting current time 
+                        let a = result.data.result[i].timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
                         //time setting
-                        const time = result.data.result[i].timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -232,7 +239,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                         const messageContent = result.data.result[i].messageContent;
                         if (messageContent.includes(word)) {
                             const p1 = document.createElement('p');
-                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minute} ${ampm})`));
                             chatMsg.appendChild(p1);
 
                             const imgDiv = document.createElement('div');
@@ -243,17 +250,23 @@ clearChatBtn.addEventListener('click', async (e) => {
                             imgDiv.appendChild(img);
                             chatMsg.appendChild(imgDiv);
                         } else {
-                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minute} ${ampm})`));
                             chatMsg.appendChild(p);
                         }
 
                     }
                     socket.on('message-emit-to-client', (msg) => {
                         const p = document.createElement('p');
-                        const time = msg.timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        // getting current time 
+                        let a = msg.timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -263,16 +276,22 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minute} ${ampm})`));
                         chatMsg.appendChild(p);
                     });
 
                     socket.on('message-emit-to-clientImg', (msg) => {
                         const p1 = document.createElement('p');
-                        const time = msg.timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        // getting current time 
+                        let a = msg.timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -282,7 +301,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minute} ${ampm})`));
                         chatMsg.appendChild(p1);
 
                         const imgDiv = document.createElement('div');
@@ -339,6 +358,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
                     attachmentIcon.removeAttribute('style');
+                    document.getElementById('attachmentIconDivId').setAttribute('class', 'attachmentIconDivGroup');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg'
 
@@ -418,10 +438,16 @@ clearChatBtn.addEventListener('click', async (e) => {
 
                     for (let i = 0; i < result.data.result.length; i++) {
                         const p = document.createElement('p');
-                        const time = result.data.result[i].timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        // getting current time 
+                        let a = result.data.result[i].timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -436,7 +462,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                         const messageContent = result.data.result[i].messageContent;
                         if (messageContent.includes(word)) {
                             const p1 = document.createElement('p');
-                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                            p1.appendChild(document.createTextNode(`${result.data.result[i].senderName}: (${hoursampm}:${minute} ${ampm})`));
                             chatMsg.appendChild(p1);
 
                             const imgDiv = document.createElement('div');
@@ -447,16 +473,22 @@ clearChatBtn.addEventListener('click', async (e) => {
                             imgDiv.appendChild(img);
                             chatMsg.appendChild(imgDiv);
                         } else {
-                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                            p.appendChild(document.createTextNode(`${result.data.result[i].senderName}: ${result.data.result[i].messageContent} (${hoursampm}:${minute} ${ampm})`));
                             chatMsg.appendChild(p);
                         }
                     }
                     socket.on('message-emit-to-clientGroup', (msg) => {
                         const p = document.createElement('p');
-                        const time = msg.timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        // getting current time 
+                        let a = msg.timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -466,15 +498,21 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minutes} ${ampm})`));
+                        p.appendChild(document.createTextNode(`${msg.senderName}: ${msg.messageContent} (${hoursampm}:${minute} ${ampm})`));
                         chatMsg.appendChild(p);
                     });
                     socket.on('message-emit-to-clientImgGroup', (msg) => {
                         const p1 = document.createElement('p');
-                        const time = msg.timeStamp;
-                        const [hour, minute, sec] = time.split(':');
+                        // getting current time 
+                        let a = msg.timeStamp;
+                        let b = a.toString();
+                        const arr = b.split('T');
+                        const c = arr[1];
+                        const arr2 = c.split('.');
+                        const Time = arr2[0];
+                        const [hour, minute, sec] = Time.split(':');
                         const hours = Number(hour);
-                        const minutes = Number(minute);
+                        // const minutes = Number(minute);
                         let ampm;
                         let hoursampm;
                         if (hours > 12) {
@@ -484,7 +522,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                             ampm = 'AM';
                             hoursampm = hours;
                         }
-                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minutes} ${ampm})`));
+                        p1.appendChild(document.createTextNode(`${msg.senderName}: (${hoursampm}:${minute} ${ampm})`));
                         chatMsg.appendChild(p1);
 
                         const imgDiv = document.createElement('div');

@@ -17,10 +17,10 @@ exports.imgControllerPost = async (req, res) => {
         const senderId = decoded.id;
 
         //getting current time 
-        let a = moment();
-        let b = a.toString();
-        const arr = b.split(' ');
-        const time = arr[4];
+        // let a = moment();
+        // let b = a.toString();
+        // const arr = b.split(' ');
+        const time = moment().format('YYYY-MM-DD HH:mm:ss');
 
         //getting sender and receiver name from user model
         const senderName = await User.findOne({
@@ -75,10 +75,10 @@ exports.imgControllerPostForGroup = async (req, res) => {
         const senderId = decoded.id;
 
         //getting current time 
-        let a = moment();
-        let b = a.toString();
-        const arr = b.split(' ');
-        const time = arr[4];
+        // let a = moment();
+        // let b = a.toString();
+        // const arr = b.split(' ');
+        const time = moment().format('YYYY-MM-DD HH:mm:ss');
 
         //getting sender and receiver name from user model
         const senderName = await User.findOne({

@@ -1,7 +1,7 @@
 const Sequelise = require('sequelize');
 const sequelize = require('../util/database');
 
-const Msg = sequelize.define('Message', {
+const ArchiveChat = sequelize.define('ArchiveChat', {
     id: {
         type: Sequelise.INTEGER,
         allowNull: false,
@@ -27,4 +27,4 @@ const Msg = sequelize.define('Message', {
     }
 });
 
-module.exports = Msg;
+module.exports = ArchiveChat;

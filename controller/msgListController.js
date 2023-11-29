@@ -13,7 +13,7 @@ exports.msgListControllerGet = async (req, res) => {
                     { senderId: recieverId, receiverId: loggedInUserId }
                 ]
             },
-            order: [['createdAt', 'ASC']]
+            order: [['timeStamp', 'ASC']]
         });
         res.status(200).json({ result, success: true });
     } catch (err) {
@@ -29,7 +29,7 @@ exports.msgListControllerGetForGroup = async (req, res) => {
             where: {
                 groupId
             },
-            order: [['createdAt', 'ASC']]
+            order: [['timeStamp', 'ASC']]
         });
         res.status(200).json({ result, success: true });
     } catch (err) {

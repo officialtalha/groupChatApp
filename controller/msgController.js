@@ -13,11 +13,11 @@ exports.msgControllerPost = async (req, res) => {
         const decoded = jwt.verify(token, process.env.JWT_SecretKey);
         const senderId = decoded.id;
         //getting current time 
-        let a = moment();
-        let b = a.toString();
-        const arr = b.split(' ');
-        const time = arr[4];
-
+        // let a = moment();
+        // let b = a.toString();
+        // const arr = b.split(' ');
+        const time = moment().format('YYYY-MM-DD HH:mm:ss');
+        console.log(time);
         //getting sender and receiver name from user model
         const senderName = await User.findOne({
             attrbutes: ['name'],
@@ -59,10 +59,10 @@ exports.msgControllerPostForGroup = async (req, res) => {
         const senderId = decoded.id;
 
         //getting current time 
-        let a = moment();
-        let b = a.toString();
-        const arr = b.split(' ');
-        const time = arr[4];
+        // let a = moment();
+        // let b = a.toString();
+        // const arr = b.split(' ');
+        const time = moment().format('YYYY-MM-DD HH:mm:ss');
 
         //getting sender name from user model
         const senderName = await User.findOne({

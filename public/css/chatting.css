@@ -352,6 +352,10 @@
             width: 103px;
         }
 
+        #msgSendBtn {
+            margin-left: 115px;
+        }
+
         #msgSendBtn:hover {
             background-color: rgba(143, 139, 232, 255);
             color: white;
@@ -362,4 +366,20 @@
             background-color: rgba(143, 139, 232, 255);
             color: white;
             cursor: pointer;
+        }
+
+        .attachmentIconDiv {
+            /* border: 2px solid black; */
+            width: 104px;
+            height: 30px;
+            margin-left: 742px;
+            margin-top: 520px;
+        }
+
+        .attachmentIconDivGroup {
+            /* border: 2px solid black; */
+            width: 104px;
+            height: 30px;
+            margin-left: 742px;
+            margin-top: 426px;
         }
