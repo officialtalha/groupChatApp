@@ -73,20 +73,23 @@
         }
 
         .txtMsg {
-            /* border: 2px solid green; */
-            padding: 5px;
+            /* border: 2px solid black; */
+            width: 613px;
+            height: 47px;
+            /* padding: 5px; */
             /* background-color: rgb(193, 248, 193); */
             margin-top: 7px;
         }
 
-        .txtMsg input {
-            width: 87%;
+        .txtMsg #msgText {
+            width: 412px;
             border-radius: 5px;
             border-width: 3px;
             border-color: rgb(222, 208, 247);
             padding-top: 4px;
             padding-bottom: 4px;
             padding-left: 11px;
+            margin-top: 1px;
         }
 
         .button {
@@ -339,4 +342,24 @@
             width: 100%;
             margin-left: 1px;
             margin-top: 1px;
+        }
+
+        #attachmentIcon {
+            cursor: pointer;
+            /* font-size: 30px; */
+            /* margin-top: 1px; */
+            /* margin-left: 1px; */
+            width: 103px;
+        }
+
+        #msgSendBtn:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+            cursor: pointer;
+        }
+
+        #attachmentIcon:hover {
+            background-color: rgba(143, 139, 232, 255);
+            color: white;
+            cursor: pointer;
         }

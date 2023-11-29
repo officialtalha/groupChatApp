@@ -10,6 +10,7 @@ const createGroupBtn = document.getElementById('createGroupBtn');
 const groupSection = document.getElementById('groupSection');
 const grpActionBtn = document.getElementById('grpActionBtn');
 const changeNameBtn = document.getElementById('changeNameBtn');
+const attachmentIcon = document.getElementById('attachmentIcon');
 const msgImg = document.getElementById('msgImg');
 const inviteBtn = document.getElementById('inviteBtn');
 const changeNameBtnDiv = document.getElementById('changeNameBtnDiv');
@@ -21,6 +22,11 @@ const token = info.token;
 let recieverId;
 let groupId;
 const socket = io();
+
+//for attachment icon
+attachmentIcon.addEventListener('click', (e) => {
+    msgImg.click();
+});
 //create group button to move creating group page
 createGroupBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -175,7 +181,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //manage welcome in msg section
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
-                    msgImg.removeAttribute('style');
+                    attachmentIcon.removeAttribute('style');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg';
 
@@ -332,7 +338,7 @@ clearChatBtn.addEventListener('click', async (e) => {
                     //manage welcome in msg section 
                     messageText.removeAttribute('style');
                     msgSendBtn.removeAttribute('style');
-                    msgImg.removeAttribute('style');
+                    attachmentIcon.removeAttribute('style');
                     chatMsg.innerHTML = '';
                     chatMsg.className = 'chat-msg'
 
